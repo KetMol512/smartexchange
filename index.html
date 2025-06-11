@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartExchange</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.7);
+      max-width: 400px;
+      margin: 80px auto;
+      padding: 30px;
+      border-radius: 20px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 0 15px #00ffcc;
+    }
+
+    select, input[type="number"], input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 12px 0;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #00cc66;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    button:hover {
+      background-color: #00994d;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SmartExchange</h1>
+    <label>Вы отдаёте:</label>
+    <select id="from">
+      <option>USDT</option><option>BTC</option><option>ETH</option><option>XRP</option><option>BNB</option>
+    </select>
+
+    <label>Сколько:</label>
+    <input type="number" id="amount" placeholder="Введите сумму">
+
+    <label>Вы получаете:</label>
+    <select id="to">
+      <option>XRP</option><option>USDT</option><option>BTC</option><option>ETH</option><option>BNB</option>
+    </select>
+
+    <button onclick="calculate()">Рассчитать</button>
+
+    <div class="result" id="output">Вы получите: 0</div>
+
+    <label>Ваш кошелёк для получения:</label>
+    <input type="text" placeholder="Вставьте адрес кошелька">
+
+    <div class="result" id="wallet">Кошелёк для оплаты: TK9CUnY64WHrMba1mh7yLN8JdjLc6f5xwX</div>
+    <button>Обменять</button>
+  </div>
+
+  <script>
+    function calculate() {
+      const from = document.getElementById("from").value;
+      const to = document.getElementById("to").value;
+      const amount = parseFloat(document.getElementById("amount").value);
+      let rate = 1;
+
+      if (from === "USDT" && to === "XRP") rate = 2.63;
+      if (from === "BTC" && to === "USDT") rate = 102897;
+      if (from === "ETH" && to === "USDT") rate = 2459;
+      if (from === "XRP" && to === "USDT") rate = 0.38;
+
+      const result = amount * rate;
+      document.getElementById("output").innerText = "Вы получите: " + result.toFixed(2);
+    }
+  </script>
+</body>
+</html>
