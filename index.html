@@ -11,15 +11,15 @@
       background-image: url('background.jpg');
       background-size: cover;
       background-position: center;
+      color: white;
     }
 
     .container {
       background-color: rgba(0, 0, 0, 0.7);
       max-width: 400px;
-      margin: 80px auto;
+      margin: 80px auto 40px;
       padding: 30px;
       border-radius: 20px;
-      color: white;
       text-align: center;
       box-shadow: 0 0 15px #00ffcc;
     }
@@ -90,8 +90,50 @@
       text-align: center;
     }
 
-    .modal-content button {
-      background-color: #00cc66;
+    .features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 40px 20px;
+      gap: 20px;
+    }
+
+    .feature-box {
+      border: 2px solid orange;
+      border-radius: 15px;
+      padding: 20px;
+      background: #111;
+      width: 300px;
+      box-shadow: 0 0 10px orange;
+    }
+
+    .faq-section {
+      max-width: 700px;
+      margin: 50px auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .faq-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .faq-item {
+      margin-bottom: 10px;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      font-weight: bold;
+      background-color: #222;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .faq-item p {
+      padding: 10px;
     }
   </style>
 </head>
@@ -117,11 +159,9 @@
     <label>Ваш кошелёк для получения:</label>
     <input type="text" id="userWallet" placeholder="Вставьте адрес кошелька">
 
-    
     <button onclick="showConfirm()">Обменять</button>
   </div>
 
-  <!-- Support Button -->
   <a class="support" href="https://t.me/SmartExchangeSup" target="_blank">Support</a>
 
   <!-- Modal 1 -->
@@ -140,6 +180,44 @@
     <div class="modal-content">
       <p>Заявка на обмен успешна ✅</p>
       <p>Ожидайте начисление в течение 15 минут.</p>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="features">
+    <div class="feature-box">
+      <h3>⚡ Быстро и надёжно</h3>
+      <p>Среднее время обмена RUB → BTC – 7 минут</p>
+      <p>Среднее время обмена RUB → USDT – 5 минут</p>
+      <p>Среднее время обмена RUB → LTC – 5 минут</p>
+    </div>
+    <div class="feature-box">
+      <h3>📊 Лучшие условия</h3>
+      <p>Всегда рыночный курс!</p>
+      <p>Лучшая реферальная программа!</p>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <details>
+        <summary>Я оплатил заявку, а она отменилась. Что делать?</summary>
+        <p>Сверьте указанные вами реквизиты и проверьте балансы, в случае не поступления средств, проверьте отправленную транзакцию на наличие подтверждений. Выплата осуществляется на момент второго подтверждения.</p>
+      </details>
+    </div>
+    <div class="faq-item">
+      <details>
+        <summary>Когда будет выплата?</summary>
+        <p>Время перевода средств зависит от направления обмена и в среднем занимает 15 минут, пожалуйста, дождитесь окончания этого времени прежде чем писать в поддержку.</p>
+      </details>
+    </div>
+    <div class="faq-item">
+      <details>
+        <summary>Какой режим работы сервиса?</summary>
+        <p>Мы работаем круглосуточно. Режим работы поддержки с 8 до 00:00 по московскому времени.</p>
+      </details>
     </div>
   </div>
 
@@ -186,7 +264,6 @@
       }, 5000);
     }
 
-    // Закрытие по клику вне окна
     window.onclick = function(event) {
       if (event.target.classList.contains('modal')) {
         document.getElementById("confirmModal").style.display = "none";
