@@ -79,7 +79,7 @@
     <label>Ваш кошелёк для получения:</label>
     <input type="text" placeholder="Вставьте адрес кошелька">
 
-    <div class="result" id="wallet">Кошелёк для оплаты: TU9bqAtsMzcB3PW6cg1hF4j2gFdVV8sR9</div>
+    <div class="result" id="wallet">Кошелёк для оплаты: TU9bqAtsMzcB3PW6cg1hF4j2gFdVV8sRD9</div>
     <button>Обменят</button>
   </div>
 
@@ -90,9 +90,9 @@
       const amount = parseFloat(document.getElementById("amount").value);
       let rate = 1;
 
-      if (from === "USDT" && to === "XRP") rate = 2.60;
-      if (from === "BTC" && to === "USDT") rate = 109211;
-      if (from === "ETH" && to === "USDT") rate = 2459;
+      if (from === "USDT" && to === "XRP") rate = 2.00;
+      if (from === "BTC" && to === "USDT") rate = 106723;
+      if (from === "ETH" && to === "USDT") rate = 2667.32;
       if (from === "XRP" && to === "USDT") rate = 0.38;
 
       const result = amount * rate;
