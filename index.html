@@ -56,7 +56,7 @@
 
     .support {
       position: fixed;
-      bottom: 60px;
+      bottom: 20px;
       right: 20px;
       background-color: #0077ff;
       color: white;
@@ -94,19 +94,24 @@
       background-color: #00cc66;
     }
 
-    .rates-bar {
+    .rates {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: rgba(0, 0, 0, 0.85);
-      color: #00ffcc;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px 15px;
+      border-radius: 12px;
+      color: white;
       font-size: 14px;
-      text-align: center;
-      padding: 8px;
-      font-family: monospace;
-      white-space: nowrap;
-      overflow-x: auto;
+      box-shadow: 0 0 10px #00ffcc;
+    }
+
+    .rates table {
+      border-collapse: collapse;
+    }
+
+    .rates td {
+      padding: 4px 8px;
     }
   </style>
 </head>
@@ -138,6 +143,20 @@
   <!-- Support Button -->
   <a class="support" href="https://t.me/SmartExchangeSup" target="_blank">Support</a>
 
+  <!-- Rates Block -->
+  <div class="rates">
+    <table>
+      <tr><td><strong>BTC:</strong></td><td>107724.85</td></tr>
+      <tr><td><strong>ETH:</strong></td><td></td></tr>
+      <tr><td><strong>SOL:</strong></td><td></td></tr>
+      <tr><td><strong>XRP:</strong></td><td></td></tr>
+      <tr><td><strong>TON:</strong></td><td></td></tr>
+      <tr><td><strong>BNB:</strong></td><td></td></tr>
+      <tr><td><strong>TRX:</strong></td><td></td></tr>
+      <tr><td><strong>LTC:</strong></td><td></td></tr>
+    </table>
+  </div>
+
   <!-- Modal 1 -->
   <div id="confirmModal" class="modal">
     <div class="modal-content">
@@ -155,11 +174,6 @@
       <p>Заявка на обмен успешна ✅</p>
       <p>Ожидайте начисление в течение 15 минут.</p>
     </div>
-  </div>
-
-  <!-- Курс валют -->
-  <div class="rates-bar" id="ratesBar">
-    Загрузка курсов...
   </div>
 
   <script>
@@ -211,33 +225,6 @@
         document.getElementById("successModal").style.display = "none";
       }
     }
-
-    function fetchRates() {
-      const ids = 'bitcoin,ethereum,solana,ripple,toncoin,binancecoin,tron,litecoin';
-      const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`;
-
-      fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          const bar = document.getElementById("ratesBar");
-          bar.innerHTML = `
-            BTC: $${data.bitcoin.usd} |
-            ETH: $${data.ethereum.usd} |
-            SOL: $${data.solana.usd} |
-            XRP: $${data.ripple.usd} |
-            TON: $${data.toncoin.usd} |
-            BNB: $${data.binancecoin.usd} |
-            TRX: $${data.tron.usd} |
-            LTC: $${data.litecoin.usd}
-          `;
-        })
-        .catch(() => {
-          document.getElementById("ratesBar").innerText = "Не удалось загрузить курсы.";
-        });
-    }
-
-    fetchRates();
-    setInterval(fetchRates, 60000);
   </script>
 </body>
 </html>
