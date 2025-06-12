@@ -93,26 +93,6 @@
     .modal-content button {
       background-color: #00cc66;
     }
-
-    .rates {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 10px 15px;
-      border-radius: 12px;
-      color: white;
-      font-size: 14px;
-      box-shadow: 0 0 10px #00ffcc;
-    }
-
-    .rates table {
-      border-collapse: collapse;
-    }
-
-    .rates td {
-      padding: 4px 8px;
-    }
   </style>
 </head>
 <body>
@@ -137,25 +117,12 @@
     <label>Ваш кошелёк для получения:</label>
     <input type="text" id="userWallet" placeholder="Вставьте адрес кошелька">
 
+    
     <button onclick="showConfirm()">Обменять</button>
   </div>
 
   <!-- Support Button -->
   <a class="support" href="https://t.me/SmartExchangeSup" target="_blank">Support</a>
-
-  <!-- Rates Block -->
-  <div class="rates">
-    <table>
-      <tr><td><strong>BTC:</strong></td><td>107724.85</td></tr>
-      <tr><td><strong>ETH:</strong></td><td></td></tr>
-      <tr><td><strong>SOL:</strong></td><td></td></tr>
-      <tr><td><strong>XRP:</strong></td><td></td></tr>
-      <tr><td><strong>TON:</strong></td><td></td></tr>
-      <tr><td><strong>BNB:</strong></td><td></td></tr>
-      <tr><td><strong>TRX:</strong></td><td></td></tr>
-      <tr><td><strong>LTC:</strong></td><td></td></tr>
-    </table>
-  </div>
 
   <!-- Modal 1 -->
   <div id="confirmModal" class="modal">
@@ -164,7 +131,7 @@
       <p id="exchangeDetails"></p>
       <p><b>Отправьте средства на:</b></p>
       <p style="word-break: break-all;">TU9bqAtsMzcB3PW6cg1hF4j2gFdVV8sRD9</p>
-      <button onclick="confirmExchange()">Я оплатил</button>
+      <button onclick="confirmExchange()">Совершить обмен</button>
     </div>
   </div>
 
@@ -219,6 +186,7 @@
       }, 5000);
     }
 
+    // Закрытие по клику вне окна
     window.onclick = function(event) {
       if (event.target.classList.contains('modal')) {
         document.getElementById("confirmModal").style.display = "none";
