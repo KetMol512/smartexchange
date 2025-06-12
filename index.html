@@ -14,28 +14,10 @@
       color: white;
     }
 
-    .header-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 40px;
-      gap: 10px;
-      font-size: 32px;
-      font-weight: bold;
-      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #00f;
-      color: #00ffee;
-    }
-
-    .header-logo img {
-      width: 32px;
-      height: 32px;
-      filter: drop-shadow(0 0 6px yellow);
-    }
-
     .container {
       background-color: rgba(0, 0, 0, 0.7);
       max-width: 400px;
-      margin: 20px auto 40px;
+      margin: 80px auto 40px;
       padding: 30px;
       border-radius: 20px;
       text-align: center;
@@ -156,15 +138,8 @@
   </style>
 </head>
 <body>
-
-  <!-- Заголовок с логотипом -->
-  <div class="header-logo">
-    <span>SmartExchange</span>
-    <img src="lamp.png" alt="Lamp Icon">
-  </div>
-
-  <!-- Обменник -->
   <div class="container">
+    <h1>SmartExchange</h1>
     <label>Вы отдаёте:</label>
     <select id="from">
       <option>USDT</option><option>BTC</option><option>ETH</option><option>XRP</option><option>BNB</option>
@@ -187,10 +162,9 @@
     <button onclick="showConfirm()">Обменять</button>
   </div>
 
-  <!-- Support -->
   <a class="support" href="https://t.me/SmartExchangeSup" target="_blank">Support</a>
 
-  <!-- Confirm Modal -->
+  <!-- Modal 1 -->
   <div id="confirmModal" class="modal">
     <div class="modal-content">
       <p><b>Подтвердите обмен:</b></p>
@@ -201,7 +175,7 @@
     </div>
   </div>
 
-  <!-- Success Modal -->
+  <!-- Modal 2 -->
   <div id="successModal" class="modal">
     <div class="modal-content">
       <p>Заявка на обмен успешна ✅</p>
@@ -209,18 +183,18 @@
     </div>
   </div>
 
-  <!-- Преимущества -->
+  <!-- Features -->
   <div class="features">
     <div class="feature-box">
       <h3>⚡ Быстро и надёжно</h3>
-      <p>USDT → BTC – 7 мин</p>
-      <p>BTC → USDT – 15 мин</p>
-      <p>USDT → LTC – 5 мин</p>
+      <p>Среднее время обмена USDT → BTC – 7 минут</p>
+      <p>Среднее время обмена BTC → USDT – 15 минут</p>
+      <p>Среднее время обмена USDT → LTC – 5 минут</p>
     </div>
     <div class="feature-box">
       <h3>📊 Лучшие условия</h3>
-      <p>Рыночный курс</p>
-      <p>Реферальная программа</p>
+      <p>Всегда рыночный курс!</p>
+      <p>Лучшая реферальная программа!</p>
     </div>
   </div>
 
@@ -236,13 +210,13 @@
     <div class="faq-item">
       <details>
         <summary>Когда будет выплата?</summary>
-        <p>Время перевода зависит от направления. Обычно 15 минут. Пожалуйста, дождитесь окончания этого времени прежде чем писать в поддержку.</p>
+        <p>Время перевода средств зависит от направления обмена и в среднем занимает 15 минут, пожалуйста, дождитесь окончания этого времени прежде чем писать в поддержку.</p>
       </details>
     </div>
     <div class="faq-item">
       <details>
         <summary>Какой режим работы сервиса?</summary>
-        <p>Мы работаем круглосуточно. Поддержка: с 8:00 до 00:00 по МСК.</p>
+        <p>Мы работаем круглосуточно. Режим работы поддержки с 8 до 00:00 по московскому времени.</p>
       </details>
     </div>
   </div>
