@@ -94,7 +94,7 @@
       if (from === "BTC" && to === "USDT") rate = 106723;
       if (from === "ETH" && to === "USDT") rate = 2667.32;
       if (from === "XRP" && to === "USDT") rate = 0.38;
-
+      if (from === "USDT" && to === "BNB") rate = 627.77;
       const result = amount * rate;
       document.getElementById("output").innerText = "Вы получите: " + result.toFixed(2);
     }
