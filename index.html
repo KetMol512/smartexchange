@@ -14,44 +14,77 @@
       color: white;
     }
 
-    .container {
-      background-color: rgba(0, 0, 0, 0.7);
-      max-width: 400px;
-      margin: 80px auto 40px;
-      padding: 30px;
+    .exchange-box {
+      background-color: rgba(0, 0, 0, 0.85);
       border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      max-width: 420px;
+      margin: 80px auto 40px;
+      box-shadow: 0 0 20px #00ffc3;
       text-align: center;
-      box-shadow: 0 0 15px #00ffcc;
     }
 
-    select, input[type="number"], input[type="text"] {
+    .exchange-title {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .input-group label {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+
+    .custom-input,
+    .custom-select {
       width: 100%;
-      padding: 10px;
-      margin: 12px 0;
-      border-radius: 12px;
+      padding: 12px;
+      border-radius: 10px;
       border: none;
       font-size: 16px;
+      background-color: #1e1e1e;
+      color: white;
     }
 
-    button {
+    .custom-input::placeholder {
+      color: #aaaaaa;
+    }
+
+    .main-btn {
       background-color: #00cc66;
       color: white;
-      padding: 12px;
       border: none;
-      border-radius: 12px;
+      padding: 12px 16px;
       font-size: 16px;
+      border-radius: 12px;
       cursor: pointer;
-      margin-top: 12px;
+      margin-top: 15px;
+      width: 100%;
     }
 
-    button:hover {
-      background-color: #00994d;
+    .main-btn:hover {
+      background-color: #00a653;
     }
 
     .result {
-      margin-top: 20px;
-      font-weight: bold;
+      margin: 15px 0;
       font-size: 18px;
+      font-weight: bold;
+      color: #ffffff;
     }
 
     .support {
@@ -89,77 +122,47 @@
       max-width: 400px;
       text-align: center;
     }
-
-    .features {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 40px 20px;
-      gap: 20px;
-    }
-
-    .feature-box {
-      border: 2px solid orange;
-      border-radius: 15px;
-      padding: 20px;
-      background: #111;
-      width: 300px;
-      box-shadow: 0 0 10px orange;
-    }
-
-    .faq-section {
-      max-width: 700px;
-      margin: 50px auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 15px;
-    }
-
-    .faq-section h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .faq-item {
-      margin-bottom: 10px;
-    }
-
-    .faq-item summary {
-      cursor: pointer;
-      font-weight: bold;
-      background-color: #222;
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    .faq-item p {
-      padding: 10px;
-    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>SmartExchange</h1>
-    <label>Вы отдаёте:</label>
-    <select id="from">
-      <option>USDT</option><option>BTC</option><option>ETH</option><option>XRP</option><option>BNB</option>
-    </select>
+  <div class="exchange-box">
+    <h1 class="exchange-title">SmartExchange</h1>
 
-    <label>Сколько:</label>
-    <input type="number" id="amount" placeholder="Введите сумму">
+    <div class="input-group">
+      <label for="from"><img src="icons/usdt.png" alt="USDT" class="icon"> Вы отдаёте:</label>
+      <select id="from" class="custom-select">
+        <option value="USDT">USDT</option>
+        <option value="BTC">BTC</option>
+        <option value="ETH">ETH</option>
+        <option value="XRP">XRP</option>
+        <option value="BNB">BNB</option>
+      </select>
+    </div>
 
-    <label>Вы получаете:</label>
-    <select id="to">
-      <option>XRP</option><option>USDT</option><option>BTC</option><option>ETH</option><option>BNB</option>
-    </select>
+    <div class="input-group">
+      <label for="amount"><img src="icons/calculator.png" alt="Amount" class="icon"> Сколько:</label>
+      <input type="number" id="amount" placeholder="Введите сумму" class="custom-input">
+    </div>
 
-    <button onclick="calculate()">Рассчитать</button>
+    <div class="input-group">
+      <label for="to"><img src="icons/eth.png" alt="To" class="icon"> Вы получаете:</label>
+      <select id="to" class="custom-select">
+        <option value="XRP">XRP</option>
+        <option value="USDT">USDT</option>
+        <option value="BTC">BTC</option>
+        <option value="ETH">ETH</option>
+        <option value="BNB">BNB</option>
+      </select>
+    </div>
+
+    <button onclick="calculate()" class="main-btn">Рассчитать</button>
+
     <div class="result" id="output">Вы получите: 0</div>
 
-    <label>Ваш кошелёк для получения:</label>
-    <input type="text" id="userWallet" placeholder="Вставьте адрес кошелька">
+    <label for="userWallet">Ваш кошелёк для получения:</label>
+    <input type="text" id="userWallet" placeholder="Вставьте адрес кошелька" class="custom-input">
 
-    <button onclick="showConfirm()">Обменять</button>
+    <button onclick="showConfirm()" class="main-btn">Обменять</button>
   </div>
 
   <a class="support" href="https://t.me/SmartExchangeSup" target="_blank">Support</a>
@@ -171,7 +174,7 @@
       <p id="exchangeDetails"></p>
       <p><b>Отправьте средства на:</b></p>
       <p style="word-break: break-all;">TU9bqAtsMzcB3PW6cg1hF4j2gFdVV8sRD9</p>
-      <button onclick="confirmExchange()">Совершить обмен</button>
+      <button onclick="confirmExchange()" class="main-btn">Совершить обмен</button>
     </div>
   </div>
 
@@ -180,50 +183,6 @@
     <div class="modal-content">
       <p>Заявка на обмен успешна ✅</p>
       <p>Ожидайте начисление в течение 15 минут.</p>
-    </div>
-  </div>
-
-  <!-- Features -->
-  <div class="features">
-    <div class="feature-box">
-      <h3>⚡ Быстро и надёжно</h3>
-      <p>Среднее время обмена USDT → BTC – 7 минут</p>
-      <p>Среднее время обмена BTC → USDT – 15 минут</p>
-      <p>Среднее время обмена USDT → LTC – 5 минут</p>
-    </div>
-    <div class="feature-box">
-      <h3>💸 Последние обмены</h3>
-      <p>BTC 0.32 → USDT 34,458.72</p>
-      <p>BTC 0.11 → USDT 11,845.18</p>
-      <p>XRP 756 → USDT 2,506.12</p>
-    </div>
-    <div class="feature-box">
-      <h3>📊 Лучшие условия</h3>
-      <p>Всегда рыночный курс!</p>
-      <p>Лучшая реферальная программа!</p>
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <div class="faq-section">
-    <h2>FAQ</h2>
-    <div class="faq-item">
-      <details>
-        <summary>Я оплатил заявку, а она отменилась. Что делать?</summary>
-        <p>Сверьте указанные вами реквизиты и проверьте балансы, в случае не поступления средств, проверьте отправленную транзакцию на наличие подтверждений. Выплата осуществляется на момент второго подтверждения.</p>
-      </details>
-    </div>
-    <div class="faq-item">
-      <details>
-        <summary>Когда будет выплата?</summary>
-        <p>Время перевода средств зависит от направления обмена и в среднем занимает 15 минут, пожалуйста, дождитесь окончания этого времени прежде чем писать в поддержку.</p>
-      </details>
-    </div>
-    <div class="faq-item">
-      <details>
-        <summary>Какой режим работы сервиса?</summary>
-        <p>Мы работаем круглосуточно. Режим работы поддержки с 8 до 00:00 по московскому времени.</p>
-      </details>
     </div>
   </div>
 
