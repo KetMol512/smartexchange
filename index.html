@@ -237,18 +237,62 @@
     </div>
   </div>
 
-  <script>
-    let latestResult = 0;
+ <script>
+  let latestResult = 0;
 
-    function calculate() {
-      const from = document.getElementById("from").value;
-      const to = document.getElementById("to").value;
-      const amount = parseFloat(document.getElementById("amount").value);
-      let rate = 1;
-      // Здесь можно расширить расчёт под новые монеты
-      latestResult = amount * rate;
-      document.getElementById("output").innerText = "Вы получите: " + latestResult.toFixed(2);
-    }
+  function calculate() {
+    const from = document.getElementById("from").value;
+    const to = document.getElementById("to").value;
+    const amount = parseFloat(document.getElementById("amount").value);
+    let rate = 1;
+
+    const rates = {
+      "USDT->BTC": 0.0000094,
+      "BTC->USDT": 106723,
+      "USDT->ETH": 0.00037,
+      "ETH->USDT": 2667,
+      "USDT->XRP": 2.63,
+      "XRP->USDT": 0.38,
+      "USDT->SOL": 0.0095,
+      "SOL->USDT": 105.26,
+      "USDT->BNB": 0.0016,
+      "BNB->USDT": 627,
+      "USDT->ADA": 2.5,
+      "ADA->USDT": 0.4,
+      "USDT->AVAX": 0.043,
+      "AVAX->USDT": 23.25,
+      "USDT->DOT": 0.136,
+      "DOT->USDT": 7.35,
+      "USDT->TRX": 8.8,
+      "TRX->USDT": 0.113,
+      "USDT->LINK": 0.056,
+      "LINK->USDT": 17.85,
+      "USDT->MATIC": 1.45,
+      "MATIC->USDT": 0.69,
+      "USDT->TON": 0.62,
+      "TON->USDT": 1.61,
+      "USDT->LTC": 0.012,
+      "LTC->USDT": 83.33,
+      "USDT->SHIB": 140000,
+      "SHIB->USDT": 0.0000071,
+      "USDT->WBTC": 0.0000094,
+      "WBTC->USDT": 106723,
+      "USDT->ICP": 0.119,
+      "ICP->USDT": 8.4,
+      "USDT->UNI": 0.076,
+      "UNI->USDT": 13.15,
+      "USDT->BCH": 0.004,
+      "BCH->USDT": 251.5,
+      "USDT->XLM": 10.2,
+      "XLM->USDT": 0.098
+    };
+
+    const key = `${from}->${to}`;
+    rate = rates[key] || 1;
+
+    latestResult = amount * rate;
+    document.getElementById("output").innerText = "Вы получите: " + latestResult.toFixed(6);
+  }
 
     function showConfirm() {
       const from = document.getElementById("from").value;
