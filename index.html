@@ -173,7 +173,6 @@
 
   <a class="support" href="https://t.me/SmartExchangeSup" target="_blank">Support</a>
 
-  <!-- Modal 1 -->
   <div id="confirmModal" class="modal">
     <div class="modal-content">
       <p><b>Номер заявки:</b> <span id="orderId"></span></p>
@@ -185,7 +184,6 @@
     </div>
   </div>
 
-  <!-- Modal 2 -->
   <div id="successModal" class="modal">
     <div class="modal-content">
       <p>Заявка на обмен успешна ✅</p>
@@ -193,7 +191,6 @@
     </div>
   </div>
 
-  <!-- Features -->
   <div class="features">
     <div class="feature-box">
       <h3>⚡ Быстро и надёжно</h3>
@@ -214,81 +211,65 @@
     </div>
   </div>
 
-  <!-- FAQ -->
   <div class="faq-section">
     <h2>FAQ</h2>
     <div class="faq-item">
       <details>
         <summary>Я оплатил заявку, а она отменилась. Что делать?</summary>
-        <p>Сверьте указанные вами реквизиты и проверьте балансы, в случае не поступления средств, проверьте отправленную транзакцию на наличие подтверждений. Выплата осуществляется на момент второго подтверждения.</p>
+        <p>Сверьте указанные вами реквизиты и проверьте балансы...</p>
       </details>
     </div>
     <div class="faq-item">
       <details>
         <summary>Когда будет выплата?</summary>
-        <p>Время перевода средств зависит от направления обмена и в среднем занимает 15 минут, пожалуйста, дождитесь окончания этого времени прежде чем писать в поддержку.</p>
+        <p>Время перевода средств зависит от направления обмена...</p>
       </details>
     </div>
     <div class="faq-item">
       <details>
         <summary>Какой режим работы сервиса?</summary>
-        <p>Мы работаем круглосуточно. Режим работы поддержки с 8 до 00:00 по московскому времени.</p>
+        <p>Мы работаем круглосуточно...</p>
       </details>
     </div>
   </div>
 
   <script>
     let latestResult = 0;
+    const rates = {
+      "USDT->BTC": 0.0000094, "BTC->USDT": 105655.77,
+      "USDT->ETH": 0.00037, "ETH->USDT": 2640.33,
+      "USDT->XRP": 2.63, "XRP->USDT": 0.3762,
+      "USDT->SOL": 0.0095, "SOL->USDT": 104.2074,
+      "USDT->BNB": 0.0016, "BNB->USDT": 620.73,
+      "USDT->ADA": 2.5, "ADA->USDT": 0.396,
+      "USDT->AVAX": 0.043, "AVAX->USDT": 23.0175,
+      "USDT->DOT": 0.136, "DOT->USDT": 7.2765,
+      "USDT->TRX": 8.8, "TRX->USDT": 0.11187,
+      "USDT->LINK": 0.056, "LINK->USDT": 17.6715,
+      "USDT->MATIC": 1.45, "MATIC->USDT": 0.6831,
+      "USDT->TON": 0.62, "TON->USDT": 1.5939,
+      "USDT->LTC": 0.012, "LTC->USDT": 82.4967,
+      "USDT->SHIB": 140000, "SHIB->USDT": 0.000007029,
+      "USDT->WBTC": 0.0000094, "WBTC->USDT": 105655.77,
+      "USDT->ICP": 0.119, "ICP->USDT": 8.316,
+      "USDT->UNI": 0.076, "UNI->USDT": 13.0185,
+      "USDT->BCH": 0.004, "BCH->USDT": 248.985,
+      "USDT->XLM": 10.2, "XLM->USDT": 0.09702
+    };
 
     function calculate() {
       const from = document.getElementById("from").value;
       const to = document.getElementById("to").value;
       const amount = parseFloat(document.getElementById("amount").value);
-      let rate = 1;
-      // Здесь можно расширить расчёт под новые монеты
-      latestResult = amount * rate;
-      document.getElementById("output").innerText = "Вы получите: " + latestResult.toFixed(2);
-    }
+      const key = `${from}->${to}`;
 
-    function showConfirm() {
-      const from = document.getElementById("from").value;
-      const to = document.getElementById("to").value;
-      const amount = document.getElementById("amount").value;
-      const wallet = document.getElementById("userWallet").value;
-      const email = document.getElementById("userEmail").value;
-
-      if (!amount || !wallet || !email) {
-        alert("Введите сумму, кошелёк и почту!");
+      if (!rates[key] || isNaN(amount)) {
+        document.getElementById("output").innerText = "Вы получите: 0";
         return;
       }
 
-      const orderId = Math.floor(100000 + Math.random() * 900000);
-      document.getElementById("orderId").innerText = orderId;
-
-      const details = `
-        Вы отдаёте: ${amount} ${from},<br>
-        Получаете: ${latestResult.toFixed(2)} ${to}<br>
-        Кошелёк: ${wallet}<br>
-        Почта: ${email}
-      `;
-
-      document.getElementById("exchangeDetails").innerHTML = details;
-      document.getElementById("confirmModal").style.display = "block";
-    }
-
-    function confirmExchange() {
-      document.getElementById("confirmModal").style.display = "none";
-      document.getElementById("successModal").style.display = "block";
-      setTimeout(() => {
-        document.getElementById("successModal").style.display = "none";
-      }, 5000);
-    }
-
-    window.onclick = function(event) {
-      if (event.target.classList.contains('modal')) {
-        document.getElementById("confirmModal").style.display = "none";
-        document.getElementById("successModal").style.display = "none";
-      }
+      latestResult = amount * rates[key];
+      document.getElementById("output").innerText = "Вы получите: " + latestResult.toFixed(6);
     }
   </script>
 </body>
