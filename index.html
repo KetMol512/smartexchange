@@ -142,7 +142,10 @@
     <h1>SmartExchange</h1>
     <label>Вы отдаёте:</label>
     <select id="from">
-      <option>USDT</option><option>BTC</option><option>ETH</option><option>XRP</option><option>BNB</option>
+      <option>USDT</option><option>BTC</option><option>ETH</option><option>XRP</option><option>SOL</option>
+      <option>BNB</option><option>ADA</option><option>AVAX</option><option>DOT</option><option>TRX</option>
+      <option>LINK</option><option>MATIC</option><option>TON</option><option>LTC</option><option>SHIB</option>
+      <option>WBTC</option><option>ICP</option><option>UNI</option><option>BCH</option><option>XLM</option>
     </select>
 
     <label>Сколько:</label>
@@ -150,7 +153,10 @@
 
     <label>Вы получаете:</label>
     <select id="to">
-      <option>XRP</option><option>USDT</option><option>BTC</option><option>ETH</option><option>BNB</option>
+      <option>USDT</option><option>BTC</option><option>ETH</option><option>XRP</option><option>SOL</option>
+      <option>BNB</option><option>ADA</option><option>AVAX</option><option>DOT</option><option>TRX</option>
+      <option>LINK</option><option>MATIC</option><option>TON</option><option>LTC</option><option>SHIB</option>
+      <option>WBTC</option><option>ICP</option><option>UNI</option><option>BCH</option><option>XLM</option>
     </select>
 
     <button onclick="calculate()">Рассчитать</button>
@@ -239,13 +245,7 @@
       const to = document.getElementById("to").value;
       const amount = parseFloat(document.getElementById("amount").value);
       let rate = 1;
-
-      if (from === "USDT" && to === "XRP") rate = 2.00;
-      if (from === "BTC" && to === "USDT") rate = 106723;
-      if (from === "ETH" && to === "USDT") rate = 2667.32;
-      if (from === "XRP" && to === "USDT") rate = 0.38;
-      if (from === "USDT" && to === "BNB") rate = 627.77;
-
+      // Здесь можно расширить расчёт под новые монеты
       latestResult = amount * rate;
       document.getElementById("output").innerText = "Вы получите: " + latestResult.toFixed(2);
     }
