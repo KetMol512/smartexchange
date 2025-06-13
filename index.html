@@ -24,7 +24,7 @@
       box-shadow: 0 0 15px #00ffcc;
     }
 
-    select, input[type="number"], input[type="text"] {
+    select, input[type="number"], input[type="text"], input[type="email"] {
       width: 100%;
       padding: 10px;
       margin: 12px 0;
@@ -89,52 +89,6 @@
       max-width: 400px;
       text-align: center;
     }
-
-    .features {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 40px 20px;
-      gap: 20px;
-    }
-
-    .feature-box {
-      border: 2px solid orange;
-      border-radius: 15px;
-      padding: 20px;
-      background: #111;
-      width: 300px;
-      box-shadow: 0 0 10px orange;
-    }
-
-    .faq-section {
-      max-width: 700px;
-      margin: 50px auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 15px;
-    }
-
-    .faq-section h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .faq-item {
-      margin-bottom: 10px;
-    }
-
-    .faq-item summary {
-      cursor: pointer;
-      font-weight: bold;
-      background-color: #222;
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    .faq-item p {
-      padding: 10px;
-    }
   </style>
 </head>
 <body>
@@ -158,6 +112,9 @@
 
     <label>Ваш кошелёк для получения:</label>
     <input type="text" id="userWallet" placeholder="Вставьте адрес кошелька">
+
+    <label>Ваша почта для уведомлений:</label>
+    <input type="email" id="userEmail" placeholder="example@email.com">
 
     <button onclick="showConfirm()">Обменять</button>
   </div>
@@ -183,52 +140,12 @@
     </div>
   </div>
 
-  <!-- Features -->
-  <div class="features">
-    <div class="feature-box">
-      <h3>⚡ Быстро и надёжно</h3>
-      <p>Среднее время обмена USDT → BTC – 7 минут</p>
-      <p>Среднее время обмена BTC → USDT – 15 минут</p>
-      <p>Среднее время обмена USDT → LTC – 5 минут</p>
-    </div>
-    <div class="feature-box">
-      <h3>💸 Последние обмены</h3>
-      <p>BTC 0.32 → USDT 34,458.72</p>
-      <p>BTC 0.11 → USDT 11,845.18</p>
-      <p>XRP 756 → USDT 2,506.12</p>
-    </div>
-    <div class="feature-box">
-      <h3>📊 Лучшие условия</h3>
-      <p>Всегда рыночный курс!</p>
-      <p>Лучшая реферальная программа!</p>
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <div class="faq-section">
-    <h2>FAQ</h2>
-    <div class="faq-item">
-      <details>
-        <summary>Я оплатил заявку, а она отменилась. Что делать?</summary>
-        <p>Сверьте указанные вами реквизиты и проверьте балансы, в случае не поступления средств, проверьте отправленную транзакцию на наличие подтверждений. Выплата осуществляется на момент второго подтверждения.</p>
-      </details>
-    </div>
-    <div class="faq-item">
-      <details>
-        <summary>Когда будет выплата?</summary>
-        <p>Время перевода средств зависит от направления обмена и в среднем занимает 15 минут, пожалуйста, дождитесь окончания этого времени прежде чем писать в поддержку.</p>
-      </details>
-    </div>
-    <div class="faq-item">
-      <details>
-        <summary>Какой режим работы сервиса?</summary>
-        <p>Мы работаем круглосуточно. Режим работы поддержки с 8 до 00:00 по московскому времени.</p>
-      </details>
-    </div>
-  </div>
-
   <script>
     let latestResult = 0;
+
+    function generateOrderId() {
+      return 'EXCH-' + Date.now();
+    }
 
     function calculate() {
       const from = document.getElementById("from").value;
@@ -251,13 +168,22 @@
       const to = document.getElementById("to").value;
       const amount = document.getElementById("amount").value;
       const wallet = document.getElementById("userWallet").value;
+      const email = document.getElementById("userEmail").value;
 
-      if (!amount || !wallet) {
-        alert("Введите сумму и кошелёк!");
+      if (!amount || !wallet || !email) {
+        alert("Пожалуйста, заполните все поля: сумма, кошелёк и email.");
         return;
       }
 
-      const details = `Вы отдаёте: ${amount} ${from}, получаете: ${latestResult.toFixed(2)} ${to}<br>Кошелёк для получения: ${wallet}`;
+      const orderId = generateOrderId();
+
+      const details = `
+        Номер заявки: <b>${orderId}</b><br><br>
+        Вы отдаёте: ${amount} ${from}, получаете: ${latestResult.toFixed(2)} ${to}<br>
+        Кошелёк для получения: ${wallet}<br>
+        Email: ${email}
+      `;
+
       document.getElementById("exchangeDetails").innerHTML = details;
       document.getElementById("confirmModal").style.display = "block";
     }
