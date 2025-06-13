@@ -159,6 +159,9 @@
     <label>Ваш кошелёк для получения:</label>
     <input type="text" id="userWallet" placeholder="Вставьте адрес кошелька">
 
+    <label>Ваша почта:</label>
+    <input type="text" id="userEmail" placeholder="example@email.com">
+
     <button onclick="showConfirm()">Обменять</button>
   </div>
 
@@ -167,6 +170,7 @@
   <!-- Modal 1 -->
   <div id="confirmModal" class="modal">
     <div class="modal-content">
+      <p><b>Номер заявки:</b> <span id="orderId"></span></p>
       <p><b>Подтвердите обмен:</b></p>
       <p id="exchangeDetails"></p>
       <p><b>Отправьте средства на:</b></p>
@@ -251,13 +255,23 @@
       const to = document.getElementById("to").value;
       const amount = document.getElementById("amount").value;
       const wallet = document.getElementById("userWallet").value;
+      const email = document.getElementById("userEmail").value;
 
-      if (!amount || !wallet) {
-        alert("Введите сумму и кошелёк!");
+      if (!amount || !wallet || !email) {
+        alert("Введите сумму, кошелёк и почту!");
         return;
       }
 
-      const details = `Вы отдаёте: ${amount} ${from}, получаете: ${latestResult.toFixed(2)} ${to}<br>Кошелёк для получения: ${wallet}`;
+      const orderId = Math.floor(100000 + Math.random() * 900000);
+      document.getElementById("orderId").innerText = orderId;
+
+      const details = `
+        Вы отдаёте: ${amount} ${from},<br>
+        Получаете: ${latestResult.toFixed(2)} ${to}<br>
+        Кошелёк: ${wallet}<br>
+        Почта: ${email}
+      `;
+
       document.getElementById("exchangeDetails").innerHTML = details;
       document.getElementById("confirmModal").style.display = "block";
     }
