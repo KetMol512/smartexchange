@@ -271,6 +271,47 @@
       latestResult = amount * rates[key];
       document.getElementById("output").innerText = "Вы получите: " + latestResult.toFixed(6);
     }
+
+    function showConfirm() {
+      const from = document.getElementById("from").value;
+      const to = document.getElementById("to").value;
+      const amount = document.getElementById("amount").value;
+      const wallet = document.getElementById("userWallet").value;
+      const email = document.getElementById("userEmail").value;
+
+      if (!amount || !wallet || !email) {
+        alert("Введите сумму, кошелёк и почту!");
+        return;
+      }
+
+      const orderId = Math.floor(100000 + Math.random() * 900000);
+      document.getElementById("orderId").innerText = orderId;
+
+      const details = `
+        Вы отдаёте: ${amount} ${from},<br>
+        Получаете: ${latestResult.toFixed(6)} ${to}<br>
+        Кошелёк: ${wallet}<br>
+        Почта: ${email}
+      `;
+
+      document.getElementById("exchangeDetails").innerHTML = details;
+      document.getElementById("confirmModal").style.display = "block";
+    }
+
+    function confirmExchange() {
+      document.getElementById("confirmModal").style.display = "none";
+      document.getElementById("successModal").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("successModal").style.display = "none";
+      }, 5000);
+    }
+
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        document.getElementById("confirmModal").style.display = "none";
+        document.getElementById("successModal").style.display = "none";
+      }
+    }
   </script>
 </body>
 </html>
