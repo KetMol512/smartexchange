@@ -180,7 +180,7 @@
       <p id="exchangeDetails"></p>
       <p><b>Отправьте средства на:</b></p>
       <p style="word-break: break-all;">TU9bqAtsMzcB3PW6cg1hF4j2gFdVV8sRD9</p>
-      <button onclick="confirmExchange()">Я оплатил</button>
+      <button onclick="confirmExchange()">Совершить обмен</button>
     </div>
   </div>
 
@@ -188,7 +188,6 @@
     <div class="modal-content">
       <p>Заявка на обмен успешна ✅</p>
       <p>Ожидайте начисление в течение 15 минут.</p>
-      <p>Письмо со статусом заявки будет отправленно на вашу почту</p>
     </div>
   </div>
 
@@ -237,19 +236,19 @@
   <script>
     let latestResult = 0;
     const rates = {
-      "USDT->BTC": 103756.32, "BTC->USDT": 105655.77,
-      "USDT->ETH": 2587.13, "ETH->USDT": 2640.33,
-      "USDT->XRP": 1.95, "XRP->USDT": 2.33,
-      "USDT->SOL": 136.54, "SOL->USDT": 146.23,
-      "USDT->BNB": 631.33, "BNB->USDT": 650.73,
-      "USDT->ADA": 0.5321, "ADA->USDT": 0.6333,
-      "USDT->AVAX": 16.32, "AVAX->USDT": 18.99,
-      "USDT->DOT": 3.136, "DOT->USDT": 3.776,
-      "USDT->TRX": 0.2240, "TRX->USDT": 0.28187,
-      "USDT->LINK": 11.13, "LINK->USDT": 13.19,
+      "USDT->BTC": 0.0000094, "BTC->USDT": 105655.77,
+      "USDT->ETH": 0.00037, "ETH->USDT": 2640.33,
+      "USDT->XRP": 2.63, "XRP->USDT": 0.3762,
+      "USDT->SOL": 0.0095, "SOL->USDT": 104.2074,
+      "USDT->BNB": 0.0016, "BNB->USDT": 620.73,
+      "USDT->ADA": 2.5, "ADA->USDT": 0.396,
+      "USDT->AVAX": 0.043, "AVAX->USDT": 23.0175,
+      "USDT->DOT": 0.136, "DOT->USDT": 7.2765,
+      "USDT->TRX": 8.8, "TRX->USDT": 0.11187,
+      "USDT->LINK": 0.056, "LINK->USDT": 17.6715,
       "USDT->MATIC": 1.45, "MATIC->USDT": 0.6831,
-      "USDT->TON": 2.337, "TON->USDT": 2.9939,
-      "USDT->LTC": 71.33, "LTC->USDT": 83.32,
+      "USDT->TON": 0.62, "TON->USDT": 1.5939,
+      "USDT->LTC": 0.012, "LTC->USDT": 82.4967,
       "USDT->SHIB": 140000, "SHIB->USDT": 0.000007029,
       "USDT->WBTC": 0.0000094, "WBTC->USDT": 105655.77,
       "USDT->ICP": 0.119, "ICP->USDT": 8.316,
@@ -271,47 +270,6 @@
 
       latestResult = amount * rates[key];
       document.getElementById("output").innerText = "Вы получите: " + latestResult.toFixed(6);
-    }
-
-    function showConfirm() {
-      const from = document.getElementById("from").value;
-      const to = document.getElementById("to").value;
-      const amount = document.getElementById("amount").value;
-      const wallet = document.getElementById("userWallet").value;
-      const email = document.getElementById("userEmail").value;
-
-      if (!amount || !wallet || !email) {
-        alert("Введите сумму, кошелёк и почту!");
-        return;
-      }
-
-      const orderId = Math.floor(100000 + Math.random() * 900000);
-      document.getElementById("orderId").innerText = orderId;
-
-      const details = `
-        Вы отдаёте: ${amount} ${from},<br>
-        Получаете: ${latestResult.toFixed(6)} ${to}<br>
-        Кошелёк: ${wallet}<br>
-        Почта: ${email}
-      `;
-
-      document.getElementById("exchangeDetails").innerHTML = details;
-      document.getElementById("confirmModal").style.display = "block";
-    }
-
-    function confirmExchange() {
-      document.getElementById("confirmModal").style.display = "none";
-      document.getElementById("successModal").style.display = "block";
-      setTimeout(() => {
-        document.getElementById("successModal").style.display = "none";
-      }, 5000);
-    }
-
-    window.onclick = function(event) {
-      if (event.target.classList.contains('modal')) {
-        document.getElementById("confirmModal").style.display = "none";
-        document.getElementById("successModal").style.display = "none";
-      }
     }
   </script>
 </body>
