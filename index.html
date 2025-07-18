@@ -355,7 +355,7 @@
         const top = data.data.map(coin => `${coin.symbol}: $${coin.quote.USD.price.toFixed(2)}`);
         document.getElementById("ticker").innerText = top.join('  •  ');
       } catch (e) {
-        document.getElementById("ticker").innerText = "Привет Снюс желаю добра";
+        document.getElementById("ticker").innerText = "";
         console.error(e);
       }
     }
