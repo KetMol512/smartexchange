@@ -14,6 +14,15 @@
       color: white;
     }
 
+    .ticker {
+      background-color: #000;
+      color: #00ffcc;
+      padding: 10px;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
     .container {
       background-color: rgba(0, 0, 0, 0.7);
       max-width: 400px;
@@ -66,86 +75,19 @@
       font-weight: bold;
       box-shadow: 0 0 10px #0077ff;
     }
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.8);
-    }
-
-    .modal-content {
-      background-color: #222;
-      color: white;
-      margin: 15% auto;
-      padding: 20px;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
-
-    .features {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 40px 20px;
-      gap: 20px;
-    }
-
-    .feature-box {
-      border: 2px solid orange;
-      border-radius: 15px;
-      padding: 20px;
-      background: #111;
-      width: 300px;
-      box-shadow: 0 0 10px orange;
-    }
-
-    .faq-section {
-      max-width: 700px;
-      margin: 50px auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 15px;
-    }
-
-    .faq-section h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .faq-item {
-      margin-bottom: 10px;
-    }
-
-    .faq-item summary {
-      cursor: pointer;
-      font-weight: bold;
-      background-color: #222;
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    .faq-item p {
-      padding: 10px;
-    }
   </style>
 </head>
 <body>
+
+  <div class="ticker">
+    <marquee behavior="scroll" direction="left" id="cryptoTicker">Загрузка курсов...</marquee>
+  </div>
+
   <div class="container">
     <h1>SmartExchange</h1>
     <label>Вы отдаёте:</label>
     <select id="from">
-      <option>USDT</option><option>BTC</option><option>ETH</option><option>XRP</option><option>SOL</option>
-      <option>BNB</option><option>ADA</option><option>AVAX</option><option>DOT</option><option>TRX</option>
-      <option>LINK</option><option>MATIC</option><option>TON</option><option>LTC</option><option>SHIB</option>
-      <option>WBTC</option><option>ICP</option><option>UNI</option><option>BCH</option><option>XLM</option>
+      <option>USDT</option><option>BTC</option><option>ETH</option>
     </select>
 
     <label>Сколько:</label>
@@ -153,10 +95,7 @@
 
     <label>Вы получаете:</label>
     <select id="to">
-      <option>USDT</option><option>BTC</option><option>ETH</option><option>XRP</option><option>SOL</option>
-      <option>BNB</option><option>ADA</option><option>AVAX</option><option>DOT</option><option>TRX</option>
-      <option>LINK</option><option>MATIC</option><option>TON</option><option>LTC</option><option>SHIB</option>
-      <option>WBTC</option><option>ICP</option><option>UNI</option><option>BCH</option><option>XLM</option>
+      <option>USDT</option><option>BTC</option><option>ETH</option>
     </select>
 
     <button onclick="calculate()">Рассчитать</button>
@@ -173,89 +112,13 @@
 
   <a class="support" href="https://t.me/SmartExchangeSup" target="_blank">Support</a>
 
-  <div id="confirmModal" class="modal">
-    <div class="modal-content">
-      <p><b>Номер заявки:</b> <span id="orderId"></span></p>
-      <p><b>Подтвердите обмен:</b></p>
-      <p id="exchangeDetails"></p>
-      <p><b>Отправьте средства на:</b></p>
-      <p style="word-break: break-all;">TU9bqAtsMzcB3PW6cg1hF4j2gFdVV8sRD9</p>
-      <button onclick="confirmExchange()">Совершить обмен</button>
-    </div>
-  </div>
-
-  <div id="successModal" class="modal">
-    <div class="modal-content">
-      <p>Заявка на обмен успешна ✅</p>
-      <p>Ожидайте начисление в течение 15 минут.</p>
-    </div>
-  </div>
-
-  <div class="features">
-    <div class="feature-box">
-      <h3>⚡ Быстро и надёжно</h3>
-      <p>Среднее время обмена USDT → BTC – 7 минут</p>
-      <p>Среднее время обмена BTC → USDT – 15 минут</p>
-      <p>Среднее время обмена USDT → LTC – 5 минут</p>
-    </div>
-    <div class="feature-box">
-      <h3>💸 Последние обмены</h3>
-      <p>BTC 0.32 → USDT 34,458.72</p>
-      <p>BTC 0.11 → USDT 11,845.18</p>
-      <p>XRP 756 → USDT 2,506.12</p>
-    </div>
-    <div class="feature-box">
-      <h3>📊 Лучшие условия</h3>
-      <p>Всегда рыночный курс!</p>
-      <p>Лучшая реферальная программа!</p>
-    </div>
-  </div>
-
-  <div class="faq-section">
-    <h2>FAQ</h2>
-    <div class="faq-item">
-      <details>
-        <summary>Я оплатил заявку, а она отменилась. Что делать?</summary>
-        <p>Сверьте указанные вами реквизиты и проверьте балансы...</p>
-      </details>
-    </div>
-    <div class="faq-item">
-      <details>
-        <summary>Когда будет выплата?</summary>
-        <p>Время перевода средств зависит от направления обмена...</p>
-      </details>
-    </div>
-    <div class="faq-item">
-      <details>
-        <summary>Какой режим работы сервиса?</summary>
-        <p>Мы работаем круглосуточно...</p>
-      </details>
-    </div>
-  </div>
-
   <script>
-    let latestResult = 0;
     const rates = {
       "USDT->BTC": 0.0000094, "BTC->USDT": 105655.77,
-      "USDT->ETH": 0.00037, "ETH->USDT": 2640.33,
-      "USDT->XRP": 2.63, "XRP->USDT": 0.3762,
-      "USDT->SOL": 0.0095, "SOL->USDT": 104.2074,
-      "USDT->BNB": 0.0016, "BNB->USDT": 620.73,
-      "USDT->ADA": 2.5, "ADA->USDT": 0.396,
-      "USDT->AVAX": 0.043, "AVAX->USDT": 23.0175,
-      "USDT->DOT": 0.136, "DOT->USDT": 7.2765,
-      "USDT->TRX": 8.8, "TRX->USDT": 0.11187,
-      "USDT->LINK": 0.056, "LINK->USDT": 17.6715,
-      "USDT->MATIC": 1.45, "MATIC->USDT": 0.6831,
-      "USDT->TON": 0.62, "TON->USDT": 1.5939,
-      "USDT->LTC": 0.012, "LTC->USDT": 82.4967,
-      "USDT->SHIB": 140000, "SHIB->USDT": 0.000007029,
-      "USDT->WBTC": 0.0000094, "WBTC->USDT": 105655.77,
-      "USDT->ICP": 0.119, "ICP->USDT": 8.316,
-      "USDT->UNI": 0.076, "UNI->USDT": 13.0185,
-      "USDT->BCH": 0.004, "BCH->USDT": 248.985,
-      "USDT->XLM": 10.2, "XLM->USDT": 0.09702
+      "USDT->ETH": 0.00037, "ETH->USDT": 2640.33
     };
+
+    let latestResult = 0;
 
     function calculate() {
       const from = document.getElementById("from").value;
@@ -273,45 +136,27 @@
     }
 
     function showConfirm() {
-      const from = document.getElementById("from").value;
-      const to = document.getElementById("to").value;
-      const amount = document.getElementById("amount").value;
       const wallet = document.getElementById("userWallet").value;
       const email = document.getElementById("userEmail").value;
-
-      if (!amount || !wallet || !email) {
-        alert("Введите сумму, кошелёк и почту!");
-        return;
+      if (!wallet || !email) {
+        alert("Введите кошелёк и почту!");
+      } else {
+        alert("Обмен подтверждён. Ожидайте перевод.");
       }
-
-      const orderId = Math.floor(100000 + Math.random() * 900000);
-      document.getElementById("orderId").innerText = orderId;
-
-      const details = `
-        Вы отдаёте: ${amount} ${from},<br>
-        Получаете: ${latestResult.toFixed(6)} ${to}<br>
-        Кошелёк: ${wallet}<br>
-        Почта: ${email}
-      `;
-
-      document.getElementById("exchangeDetails").innerHTML = details;
-      document.getElementById("confirmModal").style.display = "block";
     }
 
-    function confirmExchange() {
-      document.getElementById("confirmModal").style.display = "none";
-      document.getElementById("successModal").style.display = "block";
-      setTimeout(() => {
-        document.getElementById("successModal").style.display = "none";
-      }, 5000);
+    async function loadTicker() {
+      try {
+        const res = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1");
+        const data = await res.json();
+        const text = data.map(coin => `${coin.symbol.toUpperCase()}: $${coin.current_price}`).join(" | ");
+        document.getElementById("cryptoTicker").innerText = text;
+      } catch (error) {
+        document.getElementById("cryptoTicker").innerText = "Не удалось загрузить курсы.";
+      }
     }
 
-    window.onclick = function(event) {
-      if (event.target.classList.contains('modal')) {
-        document.getElementById("confirmModal").style.display = "none";
-        document.getElementById("successModal").style.display = "none";
-      }
-    };
+    loadTicker();
   </script>
 </body>
 </html>
