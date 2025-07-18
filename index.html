@@ -1,7 +1,7 @@
-from pathlib import Path
 
-# Создаём HTML с сохранением полного функционала и бегущей строки с курсами
-final_html = """
+
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -284,6 +284,22 @@ final_html = """
 
     loadTicker();
   </script>
+<script>
+  async function loadTicker() {
+    try {
+      const res = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1");
+      const data = await res.json();
+      const text = data.map(coin => `${coin.symbol.toUpperCase()}: $${coin.current_price}`).join(" | ");
+      document.getElementById("cryptoTicker").innerText = text;
+    } catch (error) {
+      document.getElementById("cryptoTicker").innerText = "Не удалось загрузить курсы.";
+    }
+  }
+
+  loadTicker(); // первый запуск
+  setInterval(loadTicker, 60000); // обновлять каждые 60 секунд
+</script>
+
 </body>
 </html>
 """
