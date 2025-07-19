@@ -190,14 +190,15 @@
     <button onclick="calculate()">Рассчитать</button>
     <div class="result" id="output">Вы получите: 0</div>
 
-    <label>Ваш кошелёк для получения:</label>
-    <input type="text" id="userWallet" placeholder="Вставьте адрес кошелька">
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+  <label for="userWallet" style="text-align: left;">Ваш кошелёк для получения:</label>
+  <input type="text" id="userWallet" placeholder="Вставьте адрес кошелька" />
 
-    <label>Ваша почта:</label>
-    <input type="text" id="userEmail" placeholder="example@email.com">
+    <label for="userEmail" style="text-align: left;">Ваша почта:</label>
+  <input type="text" id="userEmail" placeholder="example@email.com" />
 
     <button onclick="showConfirm()">Обменять</button>
-  </div>
+</div>
 
   <a class="support" href="https://t.me/SmartExchangeSup" target="_blank">Support</a>
 
