@@ -38,7 +38,6 @@
       z-index: 0;
       filter: blur(30px);
     }
-    /* Фоновые названия монет */
     .crypto-labels-bg {
       position: fixed;
       inset: 0;
@@ -298,6 +297,15 @@
       font-size: 20px;
       margin-bottom: 13px;
     }
+    .feature-box .dynamic-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #fbbf24;
+      margin-bottom: 7px;
+      display: block;
+      text-shadow: 0 2px 16px #fbbf2488;
+      letter-spacing: 1px;
+    }
     .faq-section {
       max-width: 700px;
       margin: 52px auto;
@@ -369,7 +377,7 @@
     <span class="crypto-label usdt">USDT</span>
     <span class="crypto-label trx">TRX</span>
     <span class="crypto-label xrp">XRP</span>
-    <span class="crypto-label sol">SOL</span>
+    <span class="crypto-label.sol">SOL</span>
     <span class="crypto-label bnb">BNB</span>
     <span class="crypto-label shib">SHIB</span>
     <span class="crypto-label ltc">LTC</span>
@@ -434,21 +442,20 @@
   </div>
   <div class="features">
     <div class="feature-box">
-      <h3>⚡ Быстро и надёжно</h3>
-      <p>Среднее время обмена USDT → BTC – 7 минут</p>
-      <p>Среднее время обмена BTC → USDT – 15 минут</p>
-      <p>Среднее время обмена USDT → LTC – 5 минут</p>
+      <span class="dynamic-title">⚡ Быстро и надёжно</span>
+      <div id="feature-speed">
+        <p>Среднее время обмена USDT → BTC – 7 минут</p>
+        <p>Среднее время обмена BTC → USDT – 15 минут</p>
+        <p>Среднее время обмена USDT → LTC – 5 минут</p>
+      </div>
     </div>
     <div class="feature-box">
-      <h3>💸 Последние обмены</h3>
-      <p>BTC 0.32 → USDT 34,458.72</p>
-      <p>BTC 0.11 → USDT 11,845.18</p>
-      <p>XRP 756 → USDT 2,506.12</p>
-    </div>
-    <div class="feature-box">
-      <h3>📊 Лучшие условия</h3>
-      <p>Всегда рыночный курс!</p>
-      <p>Лучшая реферальная программа!</p>
+      <span class="dynamic-title">💸 Последние обмены</span>
+      <div id="recent-trades">
+        <p>BTC 0.32 → USDT 34,458.72</p>
+        <p>BTC 0.11 → USDT 11,845.18</p>
+        <p>XRP 756 → USDT 2,506.12</p>
+      </div>
     </div>
   </div>
   <div class="faq-section">
@@ -593,6 +600,27 @@
         document.getElementById("cryptoTicker").innerText = "Не удалось загрузить курсы.";
       }
     }
+    // Динамические обмены
+    const recentCoins = ['BTC', 'ETH', 'USDT', 'XRP', 'SOL', 'BNB', 'ADA', 'DOT', 'TRX', 'SHIB', 'LTC', 'TON'];
+    const coinRates = {BTC: 29000, ETH: 1850, USDT: 1, XRP: 0.56, SOL: 22, BNB: 240, ADA: 0.26, DOT: 5, TRX: 0.08, SHIB: 0.00001, LTC: 85, TON: 7};
+    function randomTrade() {
+      let fromIdx = Math.floor(Math.random() * recentCoins.length);
+      let toIdx;
+      do { toIdx = Math.floor(Math.random() * recentCoins.length); } while (toIdx === fromIdx);
+      const fromCoin = recentCoins[fromIdx];
+      const toCoin = recentCoins[toIdx];
+      const amountFrom = +(Math.random() * (fromCoin === 'USDT' ? 2000 : fromCoin === 'BTC' ? 1 : 400)).toFixed(fromCoin === 'BTC' ? 2 : 0);
+      const rate = coinRates[fromCoin] / coinRates[toCoin];
+      const amountTo = +(amountFrom * rate).toFixed(toCoin === 'USDT' ? 2 : toCoin === 'BTC' ? 3 : 0);
+      return `${fromCoin} ${amountFrom} → ${toCoin} ${amountTo}`;
+    }
+    function updateRecentTrades() {
+      const trades = [];
+      for (let i = 0; i < 3; i++) trades.push(randomTrade());
+      document.getElementById('recent-trades').innerHTML = trades.map(t => `<p>${t}</p>`).join('');
+    }
+    updateRecentTrades();
+    setInterval(updateRecentTrades, 3500);
     window.onclick = function(event) {
       if (event.target.classList.contains('modal')) {
         closeModal("confirmModal");
