@@ -38,6 +38,77 @@
       z-index: 0;
       filter: blur(30px);
     }
+    /* ====== Navbar styles ====== */
+    .smart-navbar {
+      width: 100%;
+      background: #141414;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      height: 68px;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      box-shadow: 0 2px 12px #0006;
+      z-index: 100;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      font-size: 2rem;
+      font-weight: 900;
+      margin-right: 40px;
+      letter-spacing: 2px;
+    }
+    .nav-logo-main { color: #fff; }
+    .nav-logo-accent {
+      background: #ff9800;
+      color: #191919;
+      border-radius: 7px;
+      margin-left: 6px;
+      padding: 2px 9px;
+      font-weight: 700;
+      font-size: 1.05em;
+      letter-spacing: 1px;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 38px;
+      list-style: none;
+      margin: 0 0 0 0;
+      padding: 0;
+      flex: 1;
+    }
+    .nav-menu li {
+      position: relative;
+    }
+    .nav-menu li a {
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.09em;
+      text-decoration: none;
+      padding: 0 2px;
+      transition: color .22s;
+    }
+    .nav-menu li.active a,
+    .nav-menu li a:hover {
+      color: #ff9800;
+    }
+    .nav-menu li.active::after,
+    .nav-menu li a:hover::after {
+      content: '';
+      display: block;
+      margin: 0 auto;
+      width: 70%;
+      height: 3px;
+      border-radius: 2px;
+      background: #ff9800;
+      margin-top: 8px;
+    }
+    @media (max-width: 900px) {
+      .nav-menu { gap: 22px; }
+      .nav-logo { font-size: 1.4rem; margin-right: 20px;}
+    }
+    /* ====== End Navbar styles ====== */
+
     .crypto-labels-bg {
       position: fixed;
       inset: 0;
@@ -370,14 +441,27 @@
   </style>
 </head>
 <body>
-  <!-- Фоновые названия монет -->
+  <!-- ====== Navbar Integration ====== -->
+  <nav class="smart-navbar">
+    <div class="nav-logo">
+      <span class="nav-logo-main">Smart</span><span class="nav-logo-accent">Exchange</span>
+    </div>
+    <ul class="nav-menu">
+      <li class="active"><a href="#">Главная</a></li>
+      <li><a href="#">Правила</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Новости</a></li>
+      <li><a href="#">Контакты</a></li>
+    </ul>
+  </nav>
+  <!-- ====== End Navbar Integration ====== -->
   <div class="crypto-labels-bg">
     <span class="crypto-label btc">BTC</span>
     <span class="crypto-label eth">ETH</span>
     <span class="crypto-label usdt">USDT</span>
     <span class="crypto-label trx">TRX</span>
     <span class="crypto-label xrp">XRP</span>
-    <span class="crypto-label.sol">SOL</span>
+    <span class="crypto-label sol">SOL</span>
     <span class="crypto-label bnb">BNB</span>
     <span class="crypto-label shib">SHIB</span>
     <span class="crypto-label ltc">LTC</span>
