@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -11,72 +7,144 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-image: url('background.jpg');
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #0b1220 0%, #06b6d4 100%);
+      min-height: 100vh;
+      color: #f1f5f9;
+      /* subtle pattern for depth */
+      background-image: url('background.jpg'), radial-gradient(circle at 20% 30%, #07b6d444 0%, transparent 70%);
       background-size: cover;
       background-position: center;
-      color: white;
     }
 
     .ticker {
-      background-color: #111;
-      padding: 10px;
-      font-size: 16px;
-      white-space: nowrap;
-      overflow: hidden;
+      background: linear-gradient(90deg, #09d6f8 0%, #111 100%);
+      padding: 12px;
+      font-size: 17px;
+      letter-spacing: 1px;
+      color: #fff;
+      box-shadow: 0 2px 10px #09d6f822;
+      font-weight: 600;
+      border-bottom: 1px solid #1e293b;
     }
 
     .container {
-      background-color: rgba(0, 0, 0, 0.7);
-      max-width: 400px;
+      background: rgba(12, 15, 32, 0.85);
+      max-width: 420px;
       margin: 80px auto 40px;
-      padding: 30px;
-      border-radius: 20px;
+      padding: 32px 28px 30px 28px;
+      border-radius: 30px;
       text-align: center;
-      box-shadow: 0 0 15px #00ffcc;
+      box-shadow: 0 0 30px #09d6f844, 0 0 4px #222;
+      backdrop-filter: blur(8px);
+      border: 1.5px solid #22d3ee;
+      position: relative;
+      animation: fadeInUp 0.8s;
+    }
+
+    @keyframes fadeInUp {
+      from {transform: translateY(40px);opacity:0;}
+      to {transform: translateY(0);opacity:1;}
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: #09d6f8;
+      text-shadow: 0 2px 16px #09d6f880;
+      letter-spacing: 1.5px;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 6px;
+      font-size: 15px;
+      color: #bae6fd;
+      display: block;
+      text-align: left;
     }
 
     select, input[type="number"], input[type="text"] {
       width: 100%;
-      padding: 10px;
-      margin: 12px 0;
-      border-radius: 12px;
+      padding: 11px;
+      margin: 14px 0 7px 0;
+      border-radius: 13px;
       border: none;
       font-size: 16px;
+      background: rgba(21,28,45,0.8);
+      color: #f1f5f9;
+      outline: none;
+      box-shadow: 0 2px 8px #2222;
+      transition: box-shadow .2s, border .2s;
+      border: 1px solid #1e293b;
+    }
+    select:focus, input:focus {
+      border: 1.5px solid #09d6f8;
+      box-shadow: 0 2px 18px #09d6f822;
+    }
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg height='16' viewBox='0 0 24 24' width='16' fill='none' stroke='%2309d6f8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      background-size: 22px 22px;
     }
 
     button {
-      background-color: #00cc66;
-      color: white;
-      padding: 12px;
+      background: linear-gradient(90deg, #09d6f8 0%, #00cc66 100%);
+      color: #fff;
+      padding: 13px;
       border: none;
-      border-radius: 12px;
-      font-size: 16px;
+      border-radius: 13px;
+      font-size: 17px;
+      font-weight: 600;
       cursor: pointer;
-      margin-top: 12px;
+      margin-top: 14px;
+      box-shadow: 0 2px 16px #09d6f822;
+      transition: background 0.3s, box-shadow .2s, transform .1s;
     }
-
-    button:hover {
-      background-color: #00994d;
+    button:hover, .support:hover {
+      background: linear-gradient(90deg, #00cc66 0%, #09d6f8 100%);
+      box-shadow: 0 4px 24px #00cc6677;
+      transform: translateY(-2px) scale(1.04);
     }
 
     .result {
       margin-top: 20px;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 19px;
+      color: #fbbf24;
+      text-shadow: 0 2px 10px #fbbf2422;
+      animation: fadeInUp 0.5s;
     }
 
     .support {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #0077ff;
-      color: white;
-      padding: 12px 16px;
-      border-radius: 25px;
+      bottom: 24px;
+      right: 24px;
+      background: linear-gradient(90deg,#00994d 0%, #0077ff 100%);
+      color: #fff;
+      padding: 13px 18px 13px 36px;
+      border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
-      box-shadow: 0 0 10px #0077ff;
+      box-shadow: 0 0 18px #0077ff60;
+      font-size: 17px;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .support::before {
+      content: '';
+      display: inline-block;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg') no-repeat center center;
+      background-size: 22px 22px;
+      width: 22px;
+      height: 22px;
+      margin-right: 4px;
+      filter: drop-shadow(0 2px 6px #111);
     }
 
     .modal {
@@ -88,69 +156,138 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0,0,0,0.8);
+      background: rgba(8,22,38,0.88);
+      animation: fadeInModal .35s;
+    }
+    @keyframes fadeInModal {
+      from {opacity:0;}
+      to {opacity:1;}
     }
 
     .modal-content {
-      background-color: #222;
-      color: white;
+      background: linear-gradient(120deg, #181F36 40%, #222 100%);
+      color: #e0f2fe;
       margin: 15% auto;
-      padding: 20px;
-      border-radius: 15px;
+      padding: 28px 26px;
+      border-radius: 18px;
       width: 90%;
-      max-width: 400px;
+      max-width: 410px;
       text-align: center;
+      box-shadow: 0 0 18px #09d6f880;
+      position: relative;
+      animation: fadeInUp .5s;
     }
+    .modal-content .close-x {
+      position: absolute;
+      right: 18px;
+      top: 14px;
+      font-size: 23px;
+      color: #fff;
+      cursor:pointer;
+      background: none;
+      border: none;
+      opacity: .7;
+      transition: opacity .2s;
+    }
+    .modal-content .close-x:hover {opacity:1;}
 
     .features {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      margin: 40px 20px;
-      gap: 20px;
+      margin: 44px 14px;
+      gap: 24px;
     }
 
     .feature-box {
-      border: 2px solid orange;
-      border-radius: 15px;
-      padding: 20px;
-      background: #111;
+      border: 2.2px solid #fbbf24;
+      border-radius: 17px;
+      padding: 22px 20px;
+      background: linear-gradient(120deg,#181F36 55%, #111 100%);
       width: 300px;
-      box-shadow: 0 0 10px orange;
+      box-shadow: 0 0 18px #fbbf2470;
+      color: #fff;
+      position: relative;
+      transition: box-shadow .3s;
+    }
+    .feature-box:hover {
+      box-shadow: 0 0 36px #fbbf24cc;
+      border-color: #fff475;
+    }
+    .feature-box h3 {
+      color: #fbbf24;
+      text-shadow: 0 2px 14px #fbbf2488;
+      font-size: 20px;
+      margin-bottom: 13px;
     }
 
     .faq-section {
       max-width: 700px;
-      margin: 50px auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 15px;
+      margin: 52px auto;
+      background: rgba(18, 26, 44, 0.7);
+      padding: 24px 20px;
+      border-radius: 17px;
+      box-shadow: 0 0 18px #09d6f822;
     }
-
     .faq-section h2 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+      color: #09d6f8;
+      font-size: 1.5rem;
+      text-shadow: 0 2px 14px #09d6f880;
     }
 
     .faq-item {
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .faq-item summary {
       cursor: pointer;
       font-weight: bold;
-      background-color: #222;
-      padding: 10px;
-      border-radius: 10px;
+      background-color: #222a;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: #bae6fd;
+      font-size: 15px;
+      transition: background .25s;
+    }
+    .faq-item summary:hover {
+      background-color: #09d6f833;
+      color: #fff;
     }
 
     .faq-item p {
-      padding: 10px;
+      padding: 13px 16px;
+      color: #e0f2fe;
+      font-size: 15px;
+      background: #1118;
+      border-radius: 10px;
+      margin-top: 4px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      background: linear-gradient(90deg,#181F36 60%, #09d6f8 100%);
+      color: #fff;
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-size: 16px;
+      box-shadow: 0 4px 24px #09d6f888;
+      z-index: 9999;
+      opacity: 0;
+      animation: fadeInToast .3s;
+      pointer-events: none;
+    }
+    @keyframes fadeInToast {
+      from {opacity:0;}
+      to {opacity:1;}
     }
   </style>
 </head>
 <body>
-
   <div class="ticker">
     <marquee behavior="scroll" direction="left" id="cryptoTicker">Загрузка курсов...</marquee>
   </div>
@@ -164,10 +301,8 @@
       <option>LINK</option><option>MATIC</option><option>TON</option><option>LTC</option><option>SHIB</option>
       <option>WBTC</option><option>ICP</option><option>UNI</option><option>BCH</option><option>XLM</option>
     </select>
-
     <label>Сколько:</label>
-    <input type="number" id="amount" placeholder="Введите сумму">
-
+    <input type="number" id="amount" placeholder="Введите сумму" min="0.000001" step="any">
     <label>Вы получаете:</label>
     <select id="to">
       <option>USDT</option><option>BTC</option><option>ETH</option><option>XRP</option><option>SOL</option>
@@ -175,38 +310,42 @@
       <option>LINK</option><option>MATIC</option><option>TON</option><option>LTC</option><option>SHIB</option>
       <option>WBTC</option><option>ICP</option><option>UNI</option><option>BCH</option><option>XLM</option>
     </select>
-
     <button onclick="calculate()">Рассчитать</button>
     <div class="result" id="output">Вы получите: 0</div>
 
     <label>Ваш кошелёк для получения:</label>
-    <input type="text" id="userWallet" placeholder="Вставьте адрес кошелька">
-
+    <input type="text" id="userWallet" placeholder="Вставьте адрес кошелька" autocomplete="off">
     <label>Ваша почта:</label>
-    <input type="text" id="userEmail" placeholder="example@email.com">
-
+    <input type="text" id="userEmail" placeholder="example@email.com" autocomplete="email">
     <button onclick="showConfirm()">Обменять</button>
   </div>
 
   <a class="support" href="https://t.me/SmartExchangeSup" target="_blank">Support</a>
 
+  <!-- Модальное окно подтверждения -->
   <div id="confirmModal" class="modal">
     <div class="modal-content">
+      <button class="close-x" onclick="closeModal('confirmModal')">&times;</button>
       <p><b>Номер заявки:</b> <span id="orderId"></span></p>
       <p><b>Подтвердите обмен:</b></p>
       <p id="exchangeDetails"></p>
       <p><b>Отправьте средства на:</b></p>
-      <p style="word-break: break-all;">TVzzk2Ev9FkZ82CKVokLXjmXDWna1NWbAT</p>
+      <p style="word-break: break-all;">
+        <span id="payAddr">TVzzk2Ev9FkZ82CKVokLXjmXDWna1NWbAT</span>
+        <button onclick="copyAddr()" style="margin-left:8px;background:#09d6f8;color:#fff;padding:5px 10px;border-radius:8px;border:none;box-shadow:0 2px 8px #09d6f888;cursor:pointer;">Копировать</button>
+      </p>
       <button onclick="confirmExchange()">Совершить обмен</button>
     </div>
   </div>
 
   <div id="successModal" class="modal">
     <div class="modal-content">
+      <button class="close-x" onclick="closeModal('successModal')">&times;</button>
       <p>Заявка на обмен успешна ✅</p>
       <p>Ожидайте начисление в течение 15 минут.</p>
     </div>
   </div>
+
   <div class="features">
     <div class="feature-box">
       <h3>⚡ Быстро и надёжно</h3>
@@ -250,11 +389,17 @@
   </div>
 
   <script>
+    // КУРСЫ: добавь больше направлений по необходимости!
     const rates = {
       "USDT->BTC": 0.0000094, "BTC->USDT": 105655.77,
       "USDT->ETH": 0.00037, "ETH->USDT": 2640.33
     };
     let latestResult = 0;
+
+    // Экранирование для вывода
+    function escapeHTML(str) {
+      return String(str).replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
 
     function calculate() {
       const from = document.getElementById("from").value;
@@ -262,13 +407,18 @@
       const amount = parseFloat(document.getElementById("amount").value);
       const key = `${from}->${to}`;
 
-      if (!rates[key] || isNaN(amount)) {
+      if (!rates[key] || isNaN(amount) || amount <= 0) {
         document.getElementById("output").innerText = "Вы получите: 0";
+        latestResult = 0;
         return;
       }
 
       latestResult = amount * rates[key];
       document.getElementById("output").innerText = "Вы получите: " + latestResult.toFixed(6);
+    }
+
+    function isEmail(email) {
+      return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
     }
 
     function showConfirm() {
@@ -278,19 +428,27 @@
       const wallet = document.getElementById("userWallet").value;
       const email = document.getElementById("userEmail").value;
 
-      if (!amount || !wallet || !email) {
-        alert("Введите сумму, кошелёк и почту!");
+      let errorMsg = "";
+      if (!amount || isNaN(amount) || amount <= 0) errorMsg += "Введите корректную сумму.<br>";
+      if (!wallet || wallet.length < 5) errorMsg += "Введите адрес кошелька.<br>";
+      if (!email || !isEmail(email)) errorMsg += "Введите корректную почту.<br>";
+      if (latestResult === 0) errorMsg += "Нажмите 'Рассчитать' для расчёта курса.<br>";
+
+      if (errorMsg) {
+        document.getElementById("output").innerHTML = `<span style="color:#ff8888">${errorMsg}</span>`;
         return;
       }
+
+      document.getElementById("output").innerHTML = ""; // очистить ошибку
 
       const orderId = Math.floor(100000 + Math.random() * 900000);
       document.getElementById("orderId").innerText = orderId;
 
       const details = `
-        Вы отдаёте: ${amount} ${from},<br>
-        Получаете: ${latestResult.toFixed(6)} ${to}<br>
-        Кошелёк: ${wallet}<br>
-        Почта: ${email}
+        Вы отдаёте: ${escapeHTML(amount)} ${escapeHTML(from)},<br>
+        Получаете: ${escapeHTML(latestResult.toFixed(6))} ${escapeHTML(to)}<br>
+        Кошелёк: ${escapeHTML(wallet)}<br>
+        Почта: ${escapeHTML(email)}
       `;
 
       document.getElementById("exchangeDetails").innerHTML = details;
@@ -298,11 +456,33 @@
     }
 
     function confirmExchange() {
-      document.getElementById("confirmModal").style.display = "none";
+      closeModal("confirmModal");
       document.getElementById("successModal").style.display = "block";
       setTimeout(() => {
-        document.getElementById("successModal").style.display = "none";
+        closeModal("successModal");
       }, 5000);
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    function copyAddr() {
+      const addr = document.getElementById('payAddr').textContent;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(addr);
+        showToast("Адрес скопирован!");
+      }
+    }
+
+    function showToast(msg) {
+      let t = document.createElement("div");
+      t.className = "toast";
+      t.innerText = msg;
+      document.body.appendChild(t);
+      setTimeout(()=>{t.style.opacity="1";}, 100);
+      setTimeout(()=>{t.style.opacity="0";}, 1500);
+      setTimeout(()=>{document.body.removeChild(t);}, 1800);
     }
 
     async function loadTicker() {
@@ -318,31 +498,13 @@
 
     window.onclick = function(event) {
       if (event.target.classList.contains('modal')) {
-        document.getElementById("confirmModal").style.display = "none";
-        document.getElementById("successModal").style.display = "none";
+        closeModal("confirmModal");
+        closeModal("successModal");
       }
     };
 
     loadTicker();
+    setInterval(loadTicker, 60000);
   </script>
-<script>
-  async function loadTicker() {
-    try {
-      const res = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1");
-      const data = await res.json();
-      const text = data.map(coin => `${coin.symbol.toUpperCase()}: $${coin.current_price}`).join(" | ");
-      document.getElementById("cryptoTicker").innerText = text;
-    } catch (error) {
-      document.getElementById("cryptoTicker").innerText = "Не удалось загрузить курсы.";
-    }
-  }
-
-  loadTicker(); // первый запуск
-  setInterval(loadTicker, 60000); // обновлять каждые 60 секунд
-</script>
-
 </body>
 </html>
-
-
-
