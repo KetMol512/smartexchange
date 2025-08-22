@@ -38,7 +38,6 @@
       z-index: 0;
       filter: blur(30px);
     }
-    /* ====== Navbar styles ====== */
     .smart-navbar {
       width: 100%;
       background: #141414;
@@ -79,6 +78,7 @@
     }
     .nav-menu li {
       position: relative;
+      cursor: pointer;
     }
     .nav-menu li a {
       color: #fff;
@@ -87,6 +87,7 @@
       text-decoration: none;
       padding: 0 2px;
       transition: color .22s;
+      cursor: pointer;
     }
     .nav-menu li.active a,
     .nav-menu li a:hover {
@@ -107,8 +108,37 @@
       .nav-menu { gap: 22px; }
       .nav-logo { font-size: 1.4rem; margin-right: 20px;}
     }
-    /* ====== End Navbar styles ====== */
-
+    /* Tabs/Pages */
+    .page-section {
+      display: none;
+      max-width: 900px;
+      margin: 45px auto 0 auto;
+      background: rgba(18, 26, 44, 0.96);
+      border-radius: 24px;
+      box-shadow: 0 0 24px #09d6f844;
+      padding: 34px 30px 38px 30px;
+      font-size: 1.13em;
+      color: #e0f2fe;
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp .7s;
+    }
+    .page-section.active {
+      display: block;
+    }
+    .page-section h2 {
+      color: #ff9800;
+      font-size: 1.7em;
+      margin-bottom: 18px;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      font-weight: 900;
+      text-shadow: 0 2px 10px #ff980066;
+    }
+    .page-section ul, .page-section ol {
+      margin-left: 16px;
+      margin-bottom: 17px;
+    }
+    /* Остальной стиль оставляем без изменений */
     .crypto-labels-bg {
       position: fixed;
       inset: 0;
@@ -141,6 +171,11 @@
     .crypto-label.ton  { top: 25%; left: 85%; font-size: 2.9rem; color: #0098ea; opacity: 0.15;}
     .crypto-label.dot  { top: 47%; left: 9%;  font-size: 2.5rem; color: #e6007a; opacity: 0.13;}
     .crypto-label.ada  { top: 13%; left: 43%; font-size: 2.7rem; color: #0033ad; opacity: 0.14;}
+    /* Остальной стиль оставляем без изменений */
+    @keyframes fadeInUp {
+      from {transform: translateY(40px);opacity:0;}
+      to {transform: translateY(0);opacity:1;}
+    }
     .ticker {
       background: linear-gradient(90deg, #09d6f8 0%, #111 100%);
       padding: 12px;
@@ -166,10 +201,6 @@
       position: relative;
       animation: fadeInUp 0.8s;
       z-index: 1;
-    }
-    @keyframes fadeInUp {
-      from {transform: translateY(40px);opacity:0;}
-      to {transform: translateY(0);opacity:1;}
     }
     .brand-title {
       position: relative;
@@ -447,11 +478,11 @@
       <span class="nav-logo-main">Smart</span><span class="nav-logo-accent">Exchange</span>
     </div>
     <ul class="nav-menu">
-      <li class="active"><a href="#">Главная</a></li>
-      <li><a href="#">Правила</a></li>
-      <li><a href="#">FAQ</a></li>
-      <li><a href="#">Новости</a></li>
-      <li><a href="#">Контакты</a></li>
+      <li class="active" data-tab="home"><a href="#">Главная</a></li>
+      <li data-tab="rules"><a href="#">Правила</a></li>
+      <li data-tab="faq"><a href="#">FAQ</a></li>
+      <li data-tab="news"><a href="#">Новости</a></li>
+      <li data-tab="contacts"><a href="#">Контакты</a></li>
     </ul>
   </nav>
   <!-- ====== End Navbar Integration ====== -->
@@ -469,6 +500,57 @@
     <span class="crypto-label dot">DOT</span>
     <span class="crypto-label ada">ADA</span>
   </div>
+  <!-- ====== Tabs Sections ====== -->
+  <div id="page-home" class="page-section active">
+    <h2>Главная</h2>
+    <p>Добро пожаловать на SmartExchange! Безопасный и быстрый обмен криптовалют. Выберите направление обмена, рассчитайте сумму и получите лучшие условия.</p>
+  </div>
+  <div id="page-rules" class="page-section">
+    <h2>Правила сервиса</h2>
+    <ol>
+      <li><b>Стороны настоящего Cоглашения.</b><br>
+        Настоящий договор заключается следующими сторонами: интернет-сервис Smarttchange, производящий обмен различных титульных знаков, далее в тексте Сервис, с одной стороны, и лицо, далее в тексте Клиент, воспользовавшееся услугами по обмену, которые предоставляет Сервисом Smarttchange, с другой стороны.</li>
+      <li><b>Термины указанные в Соглашении</b>
+        <ol>
+          <li><b>Сервис</b> — это обменный интернет-сервис Smarttchange, производящий обмен титульных знаков на сайте smarttchange.xyz/#</li>
+          <li><b>Клиент</b> — это физическое лицо, которое пользуется продуктом интернет обслуживания и согласное с условиями Сервиса Smarttchange , отраженным в настоящем соглашении, к которому Клиент безусловно присоединяется.</li>
+          <li><b>Титульный знак</b> — это условная единица какой-либо платежной системы, соответствующая расчетам действующих электронных систем и означающая тот объем прав, который указан в договоре между системой электронной оплаты и ее Клиентом.</li>
+          <li><b>Заявка</b> — выражение намерений Клиента воспользоваться услугами сайта Smarttchange, путем заполнения формы через сайт Сервиса Smarttchange на условиях которые представлены в данном Соглашении и в описании данной Заявки.</li>
+          <li><b>Обмен титульных знаков</b> — это обмен какой-либо электронной валюты платежных систем на другую электронную валюту из предложенных Сервисом Smarttchange</li>
+          <li><b>Общественная оферта</b> — это все отображаемые Сервисом данные о действительных условиях при подаче заявок.</li>
+          <li><b>Верификация карты</b> — это процедура проверки владельца банковской карты/счета на условиях которые устанавливает сервис Smarttchange для каждой новой карты/счета Клиента.</li>
+          <li><b>Партнер</b> – лицо, оказывающее Сервису Smarttchange содействие по привлечению новых Клиентов, на условиях которые описаны в данном Соглашении.</li>
+        </ol>
+      </li>
+      <li><b>Клиент подтверждает и заверяет следующую информацию:</b>
+        <ol>
+          <li>Денежные средства получены, приобретены Клиентом легальным, не преступным методом.</li>
+          <li>Денежные средства являются собственностью Клиента.</li>
+          <li>Операции с криптовалютными активами совершаются Клиентом осознанно и в его личных интересах, не преследуя интересы третьих лиц.</li>
+          <li>Клиент не действует по поручению и не получает указания от известных или неизвестных ему третьих лиц о покупке или продаже криптовалюты, а также какую-либо информацию или указанию о крипто кошельке (-ах), на которые необходимо перевести криптовалюту или со счета которого необходимо списать криптовалюту для завершения купли-продажи криптовалюты.</li>
+          <li>Клиент имеет полное и однозначное понимание о функциональности, использовании, хранении, механизме распространения и других характеристиках криптовалюты, осознает и принимает риски и последствия при покупке или продаже криптовалюты. Клиент имеет полное понимание о сути криптовалют, их принцип работы, изменчивости курса.</li>
+          <li>Клиент получил полный объем информации о выбранной криптовалюте для принятия взвешенного решения о её покупке.</li>
+          <li>Клиент соблюдает любые применимые режимы налогообложения в юрисдикции Российской Федерации.</li>
+          <li>Денежные средства являются личными. Покупатель распоряжается, владеет, пользуется либо извлекает выгоду из них в собственных целях и нуждах, не имея на то поручение и распоряжение третьих лиц, а также не в интересах третьих лиц.</li>
+          <li>Клиент не находится под влиянием третьих лиц. Не получает и не получал угрозы от неизвестных ему лиц, также как и предостережения, обещания о похищении с банковского счета Клиента денежных средств или мошеннических действий с банковским счетом Клиента.</li>
+          <li>Клиент осознает, что в случае, если он предоставил ложные сведения, то Клиент самостоятельно несет риски наступления гражданской, административной или уголовной ответственности, предусмотренной законодательством Российской Федерации.</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+  <div id="page-faq" class="page-section">
+    <h2>FAQ</h2>
+    <p>Тут будет раздел с частыми вопросами и ответами.</p>
+  </div>
+  <div id="page-news" class="page-section">
+    <h2>Новости</h2>
+    <p>Последние новости и обновления сервиса будут здесь.</p>
+  </div>
+  <div id="page-contacts" class="page-section">
+    <h2>Контакты</h2>
+    <p>Свяжитесь с нами для поддержки или вопросов.</p>
+  </div>
+  <!-- ====== End Tabs Sections ====== -->
   <div class="ticker">
     <marquee behavior="scroll" direction="left" id="cryptoTicker">Загрузка курсов...</marquee>
   </div>
@@ -502,7 +584,6 @@
     <button onclick="showConfirm()">Обменять</button>
   </div>
   <a class="support" href="https://t.me/SmartExchangeSup" target="_blank">Support</a>
-  <!-- Модальное окно подтверждения -->
   <div id="confirmModal" class="modal">
     <div class="modal-content">
       <button class="close-x" onclick="closeModal('confirmModal')">&times;</button>
@@ -564,6 +645,27 @@
     </div>
   </div>
   <script>
+    // ====== Navbar Tabs Script ======
+    const navMenuItems = document.querySelectorAll('.nav-menu li');
+    const sections = document.querySelectorAll('.page-section');
+    navMenuItems.forEach(item => {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        // Active tab
+        navMenuItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        // Show section
+        const tab = item.getAttribute('data-tab');
+        sections.forEach(sec => {
+          sec.classList.remove('active');
+          if (sec.id === 'page-' + tab) sec.classList.add('active');
+        });
+        // Scroll to top after switching
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+    });
+
+    // ====== Rest of your JS ======
     const coins = [
       "USDT","BTC","ETH","XRP","SOL","BNB","ADA","AVAX","DOT","TRX",
       "LINK","MATIC","TON","LTC","SHIB","WBTC","ICP","UNI","BCH","XLM"
