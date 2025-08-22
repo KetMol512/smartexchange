@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SmartExchange</title>
-  <!-- Подключаем красивый шрифт -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
   <style>
     body {
@@ -40,6 +39,34 @@
       filter: blur(30px);
     }
 
+    /* Фоновые логотипы криптовалют */
+    .crypto-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .crypto-logo {
+      position: absolute;
+      filter: blur(1.5px) drop-shadow(0 2px 14px #0006);
+      user-select: none;
+      transition: opacity .4s, transform .6s;
+      opacity: 0.13;
+      will-change: filter, opacity, transform;
+    }
+    .crypto-logo.btc { top: 10%; left: 7%; width: 90px; opacity: 0.14; transform: rotate(-12deg);}
+    .crypto-logo.eth { top: 68%; left: 82%; width: 110px; opacity: 0.15; transform: rotate(14deg);}
+    .crypto-logo.usdt { top: 13%; left: 73%; width: 92px; opacity: 0.12; transform: rotate(18deg);}
+    .crypto-logo.xrp { top: 85%; left: 17%; width: 80px; opacity: 0.13; transform: rotate(-6deg);}
+    .crypto-logo.ton { top: 48%; left: 13%; width: 90px; opacity: 0.12; transform: rotate(-18deg);}
+    .crypto-logo.bnb { top: 23%; left: 40%; width: 80px; opacity: 0.11; transform: rotate(7deg);}
+    .crypto-logo.sol { top: 41%; left: 55%; width: 75px; opacity: 0.10; transform: rotate(-18deg);}
+    .crypto-logo.ada { top: 76%; left: 62%; width: 62px; opacity: 0.09; transform: rotate(9deg);}
+    .crypto-logo.dot { top: 30%; left: 80%; width: 75px; opacity: 0.11; transform: rotate(17deg);}
+    .crypto-logo.ltc { top: 60%; left: 30%; width: 70px; opacity: 0.12; transform: rotate(-15deg);}
+    .crypto-logo.shib { top: 54%; left: 75%; width: 60px; opacity: 0.08; transform: rotate(14deg);}
+
     .ticker {
       background: linear-gradient(90deg, #09d6f8 0%, #111 100%);
       padding: 12px;
@@ -73,7 +100,6 @@
       to {transform: translateY(0);opacity:1;}
     }
 
-    /* Красивый бренд-блок */
     .brand-title {
       position: relative;
       font-size: 2.8rem;
@@ -350,6 +376,21 @@
   </style>
 </head>
 <body>
+  <!-- Фоновые SVG-логотипы крипты -->
+  <div class="crypto-bg">
+    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=029" class="crypto-logo btc" alt="BTC" />
+    <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029" class="crypto-logo eth" alt="ETH" />
+    <img src="https://cryptologos.cc/logos/usdt-tether-logo.svg?v=029" class="crypto-logo usdt" alt="USDT" />
+    <img src="https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=029" class="crypto-logo xrp" alt="XRP" />
+    <img src="https://cryptologos.cc/logos/toncoin-ton-logo.svg?v=029" class="crypto-logo ton" alt="TON" />
+    <img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=029" class="crypto-logo bnb" alt="BNB" />
+    <img src="https://cryptologos.cc/logos/solana-sol-logo.svg?v=029" class="crypto-logo sol" alt="SOL" />
+    <img src="https://cryptologos.cc/logos/cardano-ada-logo.svg?v=029" class="crypto-logo ada" alt="ADA" />
+    <img src="https://cryptologos.cc/logos/polkadot-new-dot-logo.svg?v=029" class="crypto-logo dot" alt="DOT" />
+    <img src="https://cryptologos.cc/logos/litecoin-ltc-logo.svg?v=029" class="crypto-logo ltc" alt="LTC" />
+    <img src="https://cryptologos.cc/logos/shiba-inu-shib-logo.svg?v=029" class="crypto-logo shib" alt="SHIB" />
+  </div>
+
   <div class="ticker">
     <marquee behavior="scroll" direction="left" id="cryptoTicker">Загрузка курсов...</marquee>
   </div>
