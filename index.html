@@ -4,13 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SmartExchange</title>
+  <!-- Подключаем красивый шрифт -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
       min-height: 100vh;
       color: #f1f5f9;
-      /* Градиент + абстрактный паттерн + светящиеся круги */
       background:
         radial-gradient(circle at 20% 30%, #06b6d4 0%, transparent 65%),
         radial-gradient(circle at 80% 70%, #fbbf24 0%, transparent 60%),
@@ -72,13 +73,44 @@
       to {transform: translateY(0);opacity:1;}
     }
 
-    h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-      color: #09d6f8;
-      text-shadow: 0 2px 16px #09d6f880;
-      letter-spacing: 1.5px;
+    /* Красивый бренд-блок */
+    .brand-title {
+      position: relative;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 38px;
+      text-align: center;
+      line-height: 1.12;
+      z-index: 1;
+      animation: fadeInUp 1s;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+    .brand-gradient {
+      background: linear-gradient(90deg,#09d6f8 0%,#fbbf24 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      filter: drop-shadow(0 4px 18px #09d6f888) drop-shadow(0 0px 5px #fbbf2477);
+      font-family: inherit;
+      animation: shine 2.5s linear infinite;
+    }
+    @keyframes shine {
+      0% { filter: drop-shadow(0 4px 18px #09d6f888) drop-shadow(0 0px 5px #fbbf2477);}
+      50% { filter: drop-shadow(0 8px 28px #09d6f8cc) drop-shadow(0 0px 15px #fbbf24cc);}
+      100% { filter: drop-shadow(0 4px 18px #09d6f888) drop-shadow(0 0px 5px #fbbf2477);}
+    }
+    .brand-orbit {
+      position: absolute;
+      left: 50%; top: 55%;
+      width: 150px; height: 36px;
+      transform: translate(-50%,0);
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, #fff2 0%, #09d6f866 40%, transparent 90%);
+      z-index: -1;
+      filter: blur(5px);
+      pointer-events: none;
     }
 
     label {
@@ -323,7 +355,10 @@
   </div>
 
   <div class="container">
-    <h1>SmartExchange</h1>
+    <h1 class="brand-title">
+      <span class="brand-gradient">SmartExchange</span>
+      <span class="brand-orbit"></span>
+    </h1>
     <label>Вы отдаёте:</label>
     <select id="from">
       <option>USDT</option><option>BTC</option><option>ETH</option><option>XRP</option><option>SOL</option>
