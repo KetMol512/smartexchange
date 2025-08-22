@@ -49,23 +49,34 @@
     }
     .crypto-logo {
       position: absolute;
-      filter: blur(1.5px) drop-shadow(0 2px 14px #0006);
+      filter: drop-shadow(0 4px 16px #0008);
       user-select: none;
       transition: opacity .4s, transform .6s;
-      opacity: 0.13;
       will-change: filter, opacity, transform;
+      opacity: 0.22;
+      /* outline для усиления */
+      outline: 3px solid #fff2;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      /* glow */
+      box-shadow: 0 0 32px 8px #09d6f880, 0 0 8px 3px #fbbf2488;
+      /* mix-blend-mode для яркости */
+      mix-blend-mode: lighten;
     }
-    .crypto-logo.btc { top: 10%; left: 7%; width: 90px; opacity: 0.14; transform: rotate(-12deg);}
-    .crypto-logo.eth { top: 68%; left: 82%; width: 110px; opacity: 0.15; transform: rotate(14deg);}
-    .crypto-logo.usdt { top: 13%; left: 73%; width: 92px; opacity: 0.12; transform: rotate(18deg);}
-    .crypto-logo.xrp { top: 85%; left: 17%; width: 80px; opacity: 0.13; transform: rotate(-6deg);}
-    .crypto-logo.ton { top: 48%; left: 13%; width: 90px; opacity: 0.12; transform: rotate(-18deg);}
-    .crypto-logo.bnb { top: 23%; left: 40%; width: 80px; opacity: 0.11; transform: rotate(7deg);}
-    .crypto-logo.sol { top: 41%; left: 55%; width: 75px; opacity: 0.10; transform: rotate(-18deg);}
-    .crypto-logo.ada { top: 76%; left: 62%; width: 62px; opacity: 0.09; transform: rotate(9deg);}
-    .crypto-logo.dot { top: 30%; left: 80%; width: 75px; opacity: 0.11; transform: rotate(17deg);}
-    .crypto-logo.ltc { top: 60%; left: 30%; width: 70px; opacity: 0.12; transform: rotate(-15deg);}
-    .crypto-logo.shib { top: 54%; left: 75%; width: 60px; opacity: 0.08; transform: rotate(14deg);}
+    .crypto-logo.btc { top: 9%; left: 4%; width: 110px; opacity: 0.37; filter: drop-shadow(0 0 32px #f7931a) brightness(1.2);}
+    .crypto-logo.eth { top: 65%; left: 80%; width: 130px; opacity: 0.32; filter: drop-shadow(0 0 32px #6366f1) brightness(1.2);}
+    .crypto-logo.usdt { top: 13%; left: 73%; width: 105px; opacity: 0.29; filter: drop-shadow(0 0 32px #26a17b) brightness(1.2);}
+    .crypto-logo.xrp { top: 85%; left: 17%; width: 100px; opacity: 0.28; filter: drop-shadow(0 0 32px #23292f) brightness(1.2);}
+    .crypto-logo.ton { top: 48%; left: 13%; width: 120px; opacity: 0.28; filter: drop-shadow(0 0 32px #0098ea) brightness(1.2);}
+    .crypto-logo.bnb { top: 23%; left: 40%; width: 110px; opacity: 0.26; filter: drop-shadow(0 0 32px #f3ba2f) brightness(1.2);}
+    .crypto-logo.sol { top: 41%; left: 55%; width: 105px; opacity: 0.28; filter: drop-shadow(0 0 32px #00ffa3) brightness(1.2);}
+    .crypto-logo.ada { top: 76%; left: 62%; width: 90px; opacity: 0.26; filter: drop-shadow(0 0 32px #0033ad) brightness(1.2);}
+    .crypto-logo.dot { top: 30%; left: 80%; width: 90px; opacity: 0.26; filter: drop-shadow(0 0 32px #e6007a) brightness(1.2);}
+    .crypto-logo.ltc { top: 60%; left: 30%; width: 90px; opacity: 0.26; filter: drop-shadow(0 0 32px #b8b8b8) brightness(1.2);}
+    .crypto-logo.shib { top: 54%; left: 75%; width: 80px; opacity: 0.24; filter: drop-shadow(0 0 32px #f35e30) brightness(1.2);}
+    .crypto-logo.bch { top: 70%; left: 30%; width: 90px; opacity: 0.26; filter: drop-shadow(0 0 32px #8dc351) brightness(1.2);}
+    .crypto-logo.matic { top: 16%; left: 52%; width: 75px; opacity: 0.24; filter: drop-shadow(0 0 32px #8247e5) brightness(1.2);}
+    .crypto-logo.uni { top: 83%; left: 80%; width: 85px; opacity: 0.22; filter: drop-shadow(0 0 32px #ff007a) brightness(1.2);}
 
     .ticker {
       background: linear-gradient(90deg, #09d6f8 0%, #111 100%);
@@ -353,7 +364,6 @@
       margin-top: 4px;
     }
 
-    /* Toast */
     .toast {
       position: fixed;
       bottom: 40px;
@@ -389,6 +399,9 @@
     <img src="https://cryptologos.cc/logos/polkadot-new-dot-logo.svg?v=029" class="crypto-logo dot" alt="DOT" />
     <img src="https://cryptologos.cc/logos/litecoin-ltc-logo.svg?v=029" class="crypto-logo ltc" alt="LTC" />
     <img src="https://cryptologos.cc/logos/shiba-inu-shib-logo.svg?v=029" class="crypto-logo shib" alt="SHIB" />
+    <img src="https://cryptologos.cc/logos/bitcoin-cash-bch-logo.svg?v=029" class="crypto-logo bch" alt="BCH" />
+    <img src="https://cryptologos.cc/logos/polygon-matic-logo.svg?v=029" class="crypto-logo matic" alt="MATIC" />
+    <img src="https://cryptologos.cc/logos/uniswap-uni-logo.svg?v=029" class="crypto-logo uni" alt="UNI" />
   </div>
 
   <div class="ticker">
@@ -495,8 +508,6 @@
   </div>
 
   <script>
-    // Все возможные пары: USDT, BTC, ETH, XRP, SOL, BNB, ADA, AVAX, DOT, TRX, LINK, MATIC, TON, LTC, SHIB, WBTC, ICP, UNI, BCH, XLM
-    // Курс: примерно! Можешь менять значения по своему желанию
     const coins = [
       "USDT","BTC","ETH","XRP","SOL","BNB","ADA","AVAX","DOT","TRX",
       "LINK","MATIC","TON","LTC","SHIB","WBTC","ICP","UNI","BCH","XLM"
@@ -524,7 +535,6 @@
       XLM: 0.12,
     };
 
-    // Генерируем курсы для всех пар: amount * rates[from->to]
     const rates = {};
     for (let i = 0; i < coins.length; i++) {
       for (let j = 0; j < coins.length; j++) {
@@ -532,7 +542,6 @@
         if (from === to) {
           rates[`${from}->${to}`] = 1;
         } else {
-          // Курс обмена: сколько "to" получаем за 1 "from"
           rates[`${from}->${to}`] = baseRates[from] / baseRates[to];
         }
       }
@@ -582,7 +591,7 @@
         return;
       }
 
-      document.getElementById("output").innerHTML = ""; // очистить ошибку
+      document.getElementById("output").innerHTML = "";
 
       const orderId = Math.floor(100000 + Math.random() * 900000);
       document.getElementById("orderId").innerText = orderId;
