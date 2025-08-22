@@ -8,13 +8,35 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(120deg, #0b1220 0%, #06b6d4 100%);
       min-height: 100vh;
       color: #f1f5f9;
-      /* subtle pattern for depth */
-      background-image: url('background.jpg'), radial-gradient(circle at 20% 30%, #07b6d444 0%, transparent 70%);
-      background-size: cover;
-      background-position: center;
+      /* Градиент + абстрактный паттерн + светящиеся круги */
+      background:
+        radial-gradient(circle at 20% 30%, #06b6d4 0%, transparent 65%),
+        radial-gradient(circle at 80% 70%, #fbbf24 0%, transparent 60%),
+        linear-gradient(120deg, #0b1220 0%, #181F36 40%, #09d6f8 100%);
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: -180px; left: -150px;
+      width: 700px; height: 600px;
+      background: radial-gradient(circle, #09d6f8cc 0%, transparent 80%);
+      opacity: 0.35;
+      z-index: 0;
+      filter: blur(24px);
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: -220px; right: -180px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #fbbf2488 0%, transparent 80%);
+      opacity: 0.20;
+      z-index: 0;
+      filter: blur(30px);
     }
 
     .ticker {
@@ -26,6 +48,8 @@
       box-shadow: 0 2px 10px #09d6f822;
       font-weight: 600;
       border-bottom: 1px solid #1e293b;
+      position: relative;
+      z-index: 1;
     }
 
     .container {
@@ -40,6 +64,7 @@
       border: 1.5px solid #22d3ee;
       position: relative;
       animation: fadeInUp 0.8s;
+      z-index: 1;
     }
 
     @keyframes fadeInUp {
@@ -135,6 +160,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      z-index: 10;
     }
     .support::before {
       content: '';
@@ -197,6 +223,8 @@
       flex-wrap: wrap;
       margin: 44px 14px;
       gap: 24px;
+      z-index: 1;
+      position: relative;
     }
 
     .feature-box {
@@ -228,6 +256,8 @@
       padding: 24px 20px;
       border-radius: 17px;
       box-shadow: 0 0 18px #09d6f822;
+      z-index: 1;
+      position: relative;
     }
     .faq-section h2 {
       text-align: center;
@@ -389,14 +419,51 @@
   </div>
 
   <script>
-    // КУРСЫ: добавь больше направлений по необходимости!
-    const rates = {
-      "USDT->BTC": 0.0000094, "BTC->USDT": 105655.77,
-      "USDT->ETH": 0.00037, "ETH->USDT": 2640.33
+    // Все возможные пары: USDT, BTC, ETH, XRP, SOL, BNB, ADA, AVAX, DOT, TRX, LINK, MATIC, TON, LTC, SHIB, WBTC, ICP, UNI, BCH, XLM
+    // Курс: примерно! Можешь менять значения по своему желанию
+    const coins = [
+      "USDT","BTC","ETH","XRP","SOL","BNB","ADA","AVAX","DOT","TRX",
+      "LINK","MATIC","TON","LTC","SHIB","WBTC","ICP","UNI","BCH","XLM"
+    ];
+    const baseRates = {
+      USDT: 1,
+      BTC: 29000,
+      ETH: 1800,
+      XRP: 0.6,
+      SOL: 22,
+      BNB: 240,
+      ADA: 0.26,
+      AVAX: 12,
+      DOT: 5,
+      TRX: 0.08,
+      LINK: 7.5,
+      MATIC: 0.7,
+      TON: 7,
+      LTC: 85,
+      SHIB: 0.00001,
+      WBTC: 29000,
+      ICP: 3.7,
+      UNI: 6,
+      BCH: 210,
+      XLM: 0.12,
     };
+
+    // Генерируем курсы для всех пар: amount * rates[from->to]
+    const rates = {};
+    for (let i = 0; i < coins.length; i++) {
+      for (let j = 0; j < coins.length; j++) {
+        const from = coins[i], to = coins[j];
+        if (from === to) {
+          rates[`${from}->${to}`] = 1;
+        } else {
+          // Курс обмена: сколько "to" получаем за 1 "from"
+          rates[`${from}->${to}`] = baseRates[from] / baseRates[to];
+        }
+      }
+    }
+
     let latestResult = 0;
 
-    // Экранирование для вывода
     function escapeHTML(str) {
       return String(str).replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
