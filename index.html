@@ -39,7 +39,6 @@
       filter: blur(30px);
     }
 
-    /* Фоновые логотипы криптовалют */
     .crypto-bg {
       position: fixed;
       inset: 0;
@@ -49,34 +48,26 @@
     }
     .crypto-logo {
       position: absolute;
-      filter: drop-shadow(0 4px 16px #0008);
       user-select: none;
       transition: opacity .4s, transform .6s;
       will-change: filter, opacity, transform;
-      opacity: 0.22;
-      /* outline для усиления */
-      outline: 3px solid #fff2;
+      filter: drop-shadow(0 0 32px #0004) blur(0.5px);
+      opacity: 0.62;
       border-radius: 50%;
-      background: rgba(255,255,255,0.05);
-      /* glow */
-      box-shadow: 0 0 32px 8px #09d6f880, 0 0 8px 3px #fbbf2488;
-      /* mix-blend-mode для яркости */
       mix-blend-mode: lighten;
     }
-    .crypto-logo.btc { top: 9%; left: 4%; width: 110px; opacity: 0.37; filter: drop-shadow(0 0 32px #f7931a) brightness(1.2);}
-    .crypto-logo.eth { top: 65%; left: 80%; width: 130px; opacity: 0.32; filter: drop-shadow(0 0 32px #6366f1) brightness(1.2);}
-    .crypto-logo.usdt { top: 13%; left: 73%; width: 105px; opacity: 0.29; filter: drop-shadow(0 0 32px #26a17b) brightness(1.2);}
-    .crypto-logo.xrp { top: 85%; left: 17%; width: 100px; opacity: 0.28; filter: drop-shadow(0 0 32px #23292f) brightness(1.2);}
-    .crypto-logo.ton { top: 48%; left: 13%; width: 120px; opacity: 0.28; filter: drop-shadow(0 0 32px #0098ea) brightness(1.2);}
-    .crypto-logo.bnb { top: 23%; left: 40%; width: 110px; opacity: 0.26; filter: drop-shadow(0 0 32px #f3ba2f) brightness(1.2);}
-    .crypto-logo.sol { top: 41%; left: 55%; width: 105px; opacity: 0.28; filter: drop-shadow(0 0 32px #00ffa3) brightness(1.2);}
-    .crypto-logo.ada { top: 76%; left: 62%; width: 90px; opacity: 0.26; filter: drop-shadow(0 0 32px #0033ad) brightness(1.2);}
-    .crypto-logo.dot { top: 30%; left: 80%; width: 90px; opacity: 0.26; filter: drop-shadow(0 0 32px #e6007a) brightness(1.2);}
-    .crypto-logo.ltc { top: 60%; left: 30%; width: 90px; opacity: 0.26; filter: drop-shadow(0 0 32px #b8b8b8) brightness(1.2);}
-    .crypto-logo.shib { top: 54%; left: 75%; width: 80px; opacity: 0.24; filter: drop-shadow(0 0 32px #f35e30) brightness(1.2);}
-    .crypto-logo.bch { top: 70%; left: 30%; width: 90px; opacity: 0.26; filter: drop-shadow(0 0 32px #8dc351) brightness(1.2);}
-    .crypto-logo.matic { top: 16%; left: 52%; width: 75px; opacity: 0.24; filter: drop-shadow(0 0 32px #8247e5) brightness(1.2);}
-    .crypto-logo.uni { top: 83%; left: 80%; width: 85px; opacity: 0.22; filter: drop-shadow(0 0 32px #ff007a) brightness(1.2);}
+    /* Кастомные стили для каждой иконки */
+    .crypto-logo.usdt  { top: 8%; left: 7%;   width: 92px;  opacity: 0.67; filter: drop-shadow(0 0 32px #26a17b) brightness(1.13);}
+    .crypto-logo.dot   { top: 22%; left: 67%; width: 83px;  opacity: 0.56; filter: drop-shadow(0 0 32px #e6007a) brightness(1.1);}
+    .crypto-logo.shib  { top: 64%; left: 10%; width: 110px; opacity: 0.60; filter: drop-shadow(0 0 32px #f35e30) brightness(1.12);}
+    .crypto-logo.ltc   { top: 80%; left: 18%; width: 95px;  opacity: 0.63; filter: drop-shadow(0 0 32px #b8b8b8) brightness(1.1);}
+    .crypto-logo.bnb   { top: 23%; left: 40%; width: 103px; opacity: 0.59; filter: drop-shadow(0 0 32px #f3ba2f) brightness(1.12);}
+    .crypto-logo.ton   { top: 45%; left: 23%; width: 100px; opacity: 0.66; filter: drop-shadow(0 0 32px #0098ea) brightness(1.1);}
+    .crypto-logo.trx   { top: 12%; left: 82%; width: 86px;  opacity: 0.68; filter: drop-shadow(0 0 32px #ff0400) brightness(1.13);}
+    .crypto-logo.sol   { top: 55%; left: 77%; width: 108px; opacity: 0.59; filter: drop-shadow(0 0 32px #00ffa3) brightness(1.16);}
+    .crypto-logo.xrp   { top: 80%; left: 62%; width: 99px;  opacity: 0.58; filter: drop-shadow(0 0 32px #23292f) brightness(1.08);}
+    .crypto-logo.btc   { top: 31%; left: 5%;  width: 120px; opacity: 0.65; filter: drop-shadow(0 0 32px #f7931a) brightness(1.1);}
+    /* Можешь добавить еще .crypto-logo.{coin} */
 
     .ticker {
       background: linear-gradient(90deg, #09d6f8 0%, #111 100%);
@@ -386,22 +377,19 @@
   </style>
 </head>
 <body>
-  <!-- Фоновые SVG-логотипы крипты -->
   <div class="crypto-bg">
-    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=029" class="crypto-logo btc" alt="BTC" />
-    <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029" class="crypto-logo eth" alt="ETH" />
-    <img src="https://cryptologos.cc/logos/usdt-tether-logo.svg?v=029" class="crypto-logo usdt" alt="USDT" />
-    <img src="https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=029" class="crypto-logo xrp" alt="XRP" />
-    <img src="https://cryptologos.cc/logos/toncoin-ton-logo.svg?v=029" class="crypto-logo ton" alt="TON" />
-    <img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=029" class="crypto-logo bnb" alt="BNB" />
-    <img src="https://cryptologos.cc/logos/solana-sol-logo.svg?v=029" class="crypto-logo sol" alt="SOL" />
-    <img src="https://cryptologos.cc/logos/cardano-ada-logo.svg?v=029" class="crypto-logo ada" alt="ADA" />
-    <img src="https://cryptologos.cc/logos/polkadot-new-dot-logo.svg?v=029" class="crypto-logo dot" alt="DOT" />
-    <img src="https://cryptologos.cc/logos/litecoin-ltc-logo.svg?v=029" class="crypto-logo ltc" alt="LTC" />
-    <img src="https://cryptologos.cc/logos/shiba-inu-shib-logo.svg?v=029" class="crypto-logo shib" alt="SHIB" />
-    <img src="https://cryptologos.cc/logos/bitcoin-cash-bch-logo.svg?v=029" class="crypto-logo bch" alt="BCH" />
-    <img src="https://cryptologos.cc/logos/polygon-matic-logo.svg?v=029" class="crypto-logo matic" alt="MATIC" />
-    <img src="https://cryptologos.cc/logos/uniswap-uni-logo.svg?v=029" class="crypto-logo uni" alt="UNI" />
+    <!-- Фоновые лого: ваши картинки и SVG -->
+    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/usdt.png" class="crypto-logo usdt" alt="USDT" />
+    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/dot.png" class="crypto-logo dot" alt="DOT" />
+    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/shib.png" class="crypto-logo shib" alt="SHIB" />
+    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/ltc.png" class="crypto-logo ltc" alt="LTC" />
+    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/bnb.png" class="crypto-logo bnb" alt="BNB" />
+    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/ton.png" class="crypto-logo ton" alt="TON" />
+    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/trx.png" class="crypto-logo trx" alt="TRX" />
+    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/sol.png" class="crypto-logo sol" alt="SOL" />
+    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/xrp.png" class="crypto-logo xrp" alt="XRP" />
+    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/btc.png" class="crypto-logo btc" alt="BTC" />
+    <!-- Если изображения лежат локально, пропиши src="img/имя.png" -->
   </div>
 
   <div class="ticker">
