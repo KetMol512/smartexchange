@@ -38,37 +38,39 @@
       z-index: 0;
       filter: blur(30px);
     }
-
-    .crypto-bg {
+    /* Фоновые названия монет */
+    .crypto-labels-bg {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
       overflow: hidden;
     }
-    .crypto-logo {
+    .crypto-label {
       position: absolute;
-      user-select: none;
-      transition: opacity .4s, transform .6s;
-      will-change: filter, opacity, transform;
-      filter: drop-shadow(0 0 32px #0004) blur(0.5px);
-      opacity: 0.62;
-      border-radius: 50%;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      font-weight: 900;
+      font-size: 3.6rem;
+      color: #fbbf24;
+      opacity: 0.13;
+      letter-spacing: 5px;
+      pointer-events: none;
       mix-blend-mode: lighten;
+      text-shadow: 0 1px 44px #09d6f8, 0 2px 22px #fff;
+      user-select: none;
     }
-    /* Кастомные стили для каждой иконки */
-    .crypto-logo.usdt  { top: 8%; left: 7%;   width: 92px;  opacity: 0.67; filter: drop-shadow(0 0 32px #26a17b) brightness(1.13);}
-    .crypto-logo.dot   { top: 22%; left: 67%; width: 83px;  opacity: 0.56; filter: drop-shadow(0 0 32px #e6007a) brightness(1.1);}
-    .crypto-logo.shib  { top: 64%; left: 10%; width: 110px; opacity: 0.60; filter: drop-shadow(0 0 32px #f35e30) brightness(1.12);}
-    .crypto-logo.ltc   { top: 80%; left: 18%; width: 95px;  opacity: 0.63; filter: drop-shadow(0 0 32px #b8b8b8) brightness(1.1);}
-    .crypto-logo.bnb   { top: 23%; left: 40%; width: 103px; opacity: 0.59; filter: drop-shadow(0 0 32px #f3ba2f) brightness(1.12);}
-    .crypto-logo.ton   { top: 45%; left: 23%; width: 100px; opacity: 0.66; filter: drop-shadow(0 0 32px #0098ea) brightness(1.1);}
-    .crypto-logo.trx   { top: 12%; left: 82%; width: 86px;  opacity: 0.68; filter: drop-shadow(0 0 32px #ff0400) brightness(1.13);}
-    .crypto-logo.sol   { top: 55%; left: 77%; width: 108px; opacity: 0.59; filter: drop-shadow(0 0 32px #00ffa3) brightness(1.16);}
-    .crypto-logo.xrp   { top: 80%; left: 62%; width: 99px;  opacity: 0.58; filter: drop-shadow(0 0 32px #23292f) brightness(1.08);}
-    .crypto-logo.btc   { top: 31%; left: 5%;  width: 120px; opacity: 0.65; filter: drop-shadow(0 0 32px #f7931a) brightness(1.1);}
-    /* Можешь добавить еще .crypto-logo.{coin} */
-
+    .crypto-label.btc  { top: 9%;  left: 8%;  font-size: 4.3rem; color: #f7931a; opacity: 0.17; transform: rotate(-12deg);}
+    .crypto-label.eth  { top: 63%; left: 76%; font-size: 3.0rem; color: #6366f1; opacity: 0.14; transform: rotate(10deg);}
+    .crypto-label.usdt { top: 13%; left: 70%; font-size: 3.6rem; color: #26a17b; opacity: 0.18; transform: rotate(-7deg);}
+    .crypto-label.trx  { top: 81%; left: 23%; font-size: 3.3rem; color: #ff0400; opacity: 0.14; transform: rotate(-14deg);}
+    .crypto-label.xrp  { top: 38%; left: 13%; font-size: 2.7rem; color: #23292f; opacity: 0.13;}
+    .crypto-label.sol  { top: 51%; left: 58%; font-size: 3.1rem; color: #00ffa3; opacity: 0.11; transform: rotate(11deg);}
+    .crypto-label.bnb  { top: 22%; left: 49%; font-size: 2.9rem; color: #f3ba2f; opacity: 0.17;}
+    .crypto-label.shib { top: 77%; left: 63%; font-size: 2.5rem; color: #f35e30; opacity: 0.16; transform: rotate(-7deg);}
+    .crypto-label.ltc  { top: 70%; left: 33%; font-size: 2.8rem; color: #b8b8b8; opacity: 0.13; transform: rotate(6deg);}
+    .crypto-label.ton  { top: 25%; left: 85%; font-size: 2.9rem; color: #0098ea; opacity: 0.15;}
+    .crypto-label.dot  { top: 47%; left: 9%;  font-size: 2.5rem; color: #e6007a; opacity: 0.13;}
+    .crypto-label.ada  { top: 13%; left: 43%; font-size: 2.7rem; color: #0033ad; opacity: 0.14;}
     .ticker {
       background: linear-gradient(90deg, #09d6f8 0%, #111 100%);
       padding: 12px;
@@ -81,7 +83,6 @@
       position: relative;
       z-index: 1;
     }
-
     .container {
       background: rgba(12, 15, 32, 0.85);
       max-width: 420px;
@@ -96,12 +97,10 @@
       animation: fadeInUp 0.8s;
       z-index: 1;
     }
-
     @keyframes fadeInUp {
       from {transform: translateY(40px);opacity:0;}
       to {transform: translateY(0);opacity:1;}
     }
-
     .brand-title {
       position: relative;
       font-size: 2.8rem;
@@ -140,7 +139,6 @@
       filter: blur(5px);
       pointer-events: none;
     }
-
     label {
       font-weight: 600;
       margin-top: 6px;
@@ -149,7 +147,6 @@
       display: block;
       text-align: left;
     }
-
     select, input[type="number"], input[type="text"] {
       width: 100%;
       padding: 11px;
@@ -175,7 +172,6 @@
       background-position: right 15px center;
       background-size: 22px 22px;
     }
-
     button {
       background: linear-gradient(90deg, #09d6f8 0%, #00cc66 100%);
       color: #fff;
@@ -194,7 +190,6 @@
       box-shadow: 0 4px 24px #00cc6677;
       transform: translateY(-2px) scale(1.04);
     }
-
     .result {
       margin-top: 20px;
       font-weight: bold;
@@ -203,7 +198,6 @@
       text-shadow: 0 2px 10px #fbbf2422;
       animation: fadeInUp 0.5s;
     }
-
     .support {
       position: fixed;
       bottom: 24px;
@@ -232,7 +226,6 @@
       margin-right: 4px;
       filter: drop-shadow(0 2px 6px #111);
     }
-
     .modal {
       display: none;
       position: fixed;
@@ -249,7 +242,6 @@
       from {opacity:0;}
       to {opacity:1;}
     }
-
     .modal-content {
       background: linear-gradient(120deg, #181F36 40%, #222 100%);
       color: #e0f2fe;
@@ -276,7 +268,6 @@
       transition: opacity .2s;
     }
     .modal-content .close-x:hover {opacity:1;}
-
     .features {
       display: flex;
       justify-content: center;
@@ -286,7 +277,6 @@
       z-index: 1;
       position: relative;
     }
-
     .feature-box {
       border: 2.2px solid #fbbf24;
       border-radius: 17px;
@@ -308,7 +298,6 @@
       font-size: 20px;
       margin-bottom: 13px;
     }
-
     .faq-section {
       max-width: 700px;
       margin: 52px auto;
@@ -326,11 +315,9 @@
       font-size: 1.5rem;
       text-shadow: 0 2px 14px #09d6f880;
     }
-
     .faq-item {
       margin-bottom: 14px;
     }
-
     .faq-item summary {
       cursor: pointer;
       font-weight: bold;
@@ -345,7 +332,6 @@
       background-color: #09d6f833;
       color: #fff;
     }
-
     .faq-item p {
       padding: 13px 16px;
       color: #e0f2fe;
@@ -354,7 +340,6 @@
       border-radius: 10px;
       margin-top: 4px;
     }
-
     .toast {
       position: fixed;
       bottom: 40px;
@@ -377,25 +362,24 @@
   </style>
 </head>
 <body>
-  <div class="crypto-bg">
-    <!-- Фоновые лого: ваши картинки и SVG -->
-    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/usdt.png" class="crypto-logo usdt" alt="USDT" />
-    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/dot.png" class="crypto-logo dot" alt="DOT" />
-    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/shib.png" class="crypto-logo shib" alt="SHIB" />
-    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/ltc.png" class="crypto-logo ltc" alt="LTC" />
-    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/bnb.png" class="crypto-logo bnb" alt="BNB" />
-    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/ton.png" class="crypto-logo ton" alt="TON" />
-    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/trx.png" class="crypto-logo trx" alt="TRX" />
-    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/sol.png" class="crypto-logo sol" alt="SOL" />
-    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/xrp.png" class="crypto-logo xrp" alt="XRP" />
-    <img src="https://raw.githubusercontent.com/KetMol512/img-host/main/btc.png" class="crypto-logo btc" alt="BTC" />
-    <!-- Если изображения лежат локально, пропиши src="img/имя.png" -->
+  <!-- Фоновые названия монет -->
+  <div class="crypto-labels-bg">
+    <span class="crypto-label btc">BTC</span>
+    <span class="crypto-label eth">ETH</span>
+    <span class="crypto-label usdt">USDT</span>
+    <span class="crypto-label trx">TRX</span>
+    <span class="crypto-label xrp">XRP</span>
+    <span class="crypto-label sol">SOL</span>
+    <span class="crypto-label bnb">BNB</span>
+    <span class="crypto-label shib">SHIB</span>
+    <span class="crypto-label ltc">LTC</span>
+    <span class="crypto-label ton">TON</span>
+    <span class="crypto-label dot">DOT</span>
+    <span class="crypto-label ada">ADA</span>
   </div>
-
   <div class="ticker">
     <marquee behavior="scroll" direction="left" id="cryptoTicker">Загрузка курсов...</marquee>
   </div>
-
   <div class="container">
     <h1 class="brand-title">
       <span class="brand-gradient">SmartExchange</span>
@@ -419,16 +403,13 @@
     </select>
     <button onclick="calculate()">Рассчитать</button>
     <div class="result" id="output">Вы получите: 0</div>
-
     <label>Ваш кошелёк для получения:</label>
     <input type="text" id="userWallet" placeholder="Вставьте адрес кошелька" autocomplete="off">
     <label>Ваша почта:</label>
     <input type="text" id="userEmail" placeholder="example@email.com" autocomplete="email">
     <button onclick="showConfirm()">Обменять</button>
   </div>
-
   <a class="support" href="https://t.me/SmartExchangeSup" target="_blank">Support</a>
-
   <!-- Модальное окно подтверждения -->
   <div id="confirmModal" class="modal">
     <div class="modal-content">
@@ -444,7 +425,6 @@
       <button onclick="confirmExchange()">Совершить обмен</button>
     </div>
   </div>
-
   <div id="successModal" class="modal">
     <div class="modal-content">
       <button class="close-x" onclick="closeModal('successModal')">&times;</button>
@@ -452,7 +432,6 @@
       <p>Ожидайте начисление в течение 15 минут.</p>
     </div>
   </div>
-
   <div class="features">
     <div class="feature-box">
       <h3>⚡ Быстро и надёжно</h3>
@@ -472,7 +451,6 @@
       <p>Лучшая реферальная программа!</p>
     </div>
   </div>
-
   <div class="faq-section">
     <h2>FAQ</h2>
     <div class="faq-item">
@@ -494,7 +472,6 @@
       </details>
     </div>
   </div>
-
   <script>
     const coins = [
       "USDT","BTC","ETH","XRP","SOL","BNB","ADA","AVAX","DOT","TRX",
@@ -522,7 +499,6 @@
       BCH: 210,
       XLM: 0.12,
     };
-
     const rates = {};
     for (let i = 0; i < coins.length; i++) {
       for (let j = 0; j < coins.length; j++) {
@@ -534,67 +510,53 @@
         }
       }
     }
-
     let latestResult = 0;
-
     function escapeHTML(str) {
       return String(str).replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
-
     function calculate() {
       const from = document.getElementById("from").value;
       const to = document.getElementById("to").value;
       const amount = parseFloat(document.getElementById("amount").value);
       const key = `${from}->${to}`;
-
       if (!rates[key] || isNaN(amount) || amount <= 0) {
         document.getElementById("output").innerText = "Вы получите: 0";
         latestResult = 0;
         return;
       }
-
       latestResult = amount * rates[key];
       document.getElementById("output").innerText = "Вы получите: " + latestResult.toFixed(6);
     }
-
     function isEmail(email) {
       return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
     }
-
     function showConfirm() {
       const from = document.getElementById("from").value;
       const to = document.getElementById("to").value;
       const amount = document.getElementById("amount").value;
       const wallet = document.getElementById("userWallet").value;
       const email = document.getElementById("userEmail").value;
-
       let errorMsg = "";
       if (!amount || isNaN(amount) || amount <= 0) errorMsg += "Введите корректную сумму.<br>";
       if (!wallet || wallet.length < 5) errorMsg += "Введите адрес кошелька.<br>";
       if (!email || !isEmail(email)) errorMsg += "Введите корректную почту.<br>";
       if (latestResult === 0) errorMsg += "Нажмите 'Рассчитать' для расчёта курса.<br>";
-
       if (errorMsg) {
         document.getElementById("output").innerHTML = `<span style="color:#ff8888">${errorMsg}</span>`;
         return;
       }
-
       document.getElementById("output").innerHTML = "";
-
       const orderId = Math.floor(100000 + Math.random() * 900000);
       document.getElementById("orderId").innerText = orderId;
-
       const details = `
         Вы отдаёте: ${escapeHTML(amount)} ${escapeHTML(from)},<br>
         Получаете: ${escapeHTML(latestResult.toFixed(6))} ${escapeHTML(to)}<br>
         Кошелёк: ${escapeHTML(wallet)}<br>
         Почта: ${escapeHTML(email)}
       `;
-
       document.getElementById("exchangeDetails").innerHTML = details;
       document.getElementById("confirmModal").style.display = "block";
     }
-
     function confirmExchange() {
       closeModal("confirmModal");
       document.getElementById("successModal").style.display = "block";
@@ -602,11 +564,9 @@
         closeModal("successModal");
       }, 5000);
     }
-
     function closeModal(id) {
       document.getElementById(id).style.display = "none";
     }
-
     function copyAddr() {
       const addr = document.getElementById('payAddr').textContent;
       if (navigator.clipboard) {
@@ -614,7 +574,6 @@
         showToast("Адрес скопирован!");
       }
     }
-
     function showToast(msg) {
       let t = document.createElement("div");
       t.className = "toast";
@@ -624,7 +583,6 @@
       setTimeout(()=>{t.style.opacity="0";}, 1500);
       setTimeout(()=>{document.body.removeChild(t);}, 1800);
     }
-
     async function loadTicker() {
       try {
         const res = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1");
@@ -635,14 +593,12 @@
         document.getElementById("cryptoTicker").innerText = "Не удалось загрузить курсы.";
       }
     }
-
     window.onclick = function(event) {
       if (event.target.classList.contains('modal')) {
         closeModal("confirmModal");
         closeModal("successModal");
       }
     };
-
     loadTicker();
     setInterval(loadTicker, 60000);
   </script>
