@@ -140,11 +140,6 @@
       margin-left: 16px;
       margin-bottom: 17px;
     }
-    /* Главная страница - убираем описание */
-    .page-section.home-content {
-      display: none !important;
-    }
-    /* Остальной стиль оставляем без изменений */
     .crypto-labels-bg {
       position: fixed;
       inset: 0;
@@ -177,7 +172,6 @@
     .crypto-label.ton  { top: 25%; left: 85%; font-size: 2.9rem; color: #0098ea; opacity: 0.15;}
     .crypto-label.dot  { top: 47%; left: 9%;  font-size: 2.5rem; color: #e6007a; opacity: 0.13;}
     .crypto-label.ada  { top: 13%; left: 43%; font-size: 2.7rem; color: #0033ad; opacity: 0.14;}
-    /* Остальной стиль оставляем без изменений */
     @keyframes fadeInUp {
       from {transform: translateY(40px);opacity:0;}
       to {transform: translateY(0);opacity:1;}
@@ -191,8 +185,9 @@
       box-shadow: 0 2px 10px #09d6f822;
       font-weight: 600;
       border-bottom: 1px solid #1e293b;
-      position: relative;
-      z-index: 1;
+      position: sticky;
+      top: 68px;
+      z-index: 101;
     }
     .container {
       background: rgba(12, 15, 32, 0.85);
@@ -414,67 +409,6 @@
       text-shadow: 0 2px 16px #fbbf2488;
       letter-spacing: 1px;
     }
-    .faq-section {
-      max-width: 700px;
-      margin: 52px auto;
-      background: rgba(18, 26, 44, 0.7);
-      padding: 24px 20px;
-      border-radius: 17px;
-      box-shadow: 0 0 18px #09d6f822;
-      z-index: 1;
-      position: relative;
-    }
-    .faq-section h2 {
-      text-align: center;
-      margin-bottom: 22px;
-      color: #09d6f8;
-      font-size: 1.5rem;
-      text-shadow: 0 2px 14px #09d6f880;
-    }
-    .faq-item {
-      margin-bottom: 14px;
-    }
-    .faq-item summary {
-      cursor: pointer;
-      font-weight: bold;
-      background-color: #222a;
-      padding: 12px 14px;
-      border-radius: 12px;
-      color: #bae6fd;
-      font-size: 15px;
-      transition: background .25s;
-    }
-    .faq-item summary:hover {
-      background-color: #09d6f833;
-      color: #fff;
-    }
-    .faq-item p {
-      padding: 13px 16px;
-      color: #e0f2fe;
-      font-size: 15px;
-      background: #1118;
-      border-radius: 10px;
-      margin-top: 4px;
-    }
-    .toast {
-      position: fixed;
-      bottom: 40px;
-      right: 40px;
-      background: linear-gradient(90deg,#181F36 60%, #09d6f8 100%);
-      color: #fff;
-      padding: 14px 24px;
-      border-radius: 14px;
-      font-size: 16px;
-      box-shadow: 0 4px 24px #09d6f888;
-      z-index: 9999;
-      opacity: 0;
-      animation: fadeInToast .3s;
-      pointer-events: none;
-    }
-    @keyframes fadeInToast {
-      from {opacity:0;}
-      to {opacity:1;}
-    }
   </style>
 </head>
 <body>
@@ -491,7 +425,9 @@
       <li data-tab="contacts"><a href="#">Контакты</a></li>
     </ul>
   </nav>
-  <!-- ====== End Navbar Integration ====== -->
+  <div class="ticker">
+    <marquee behavior="scroll" direction="left" id="cryptoTicker">Загрузка курсов...</marquee>
+  </div>
   <div class="crypto-labels-bg">
     <span class="crypto-label btc">BTC</span>
     <span class="crypto-label eth">ETH</span>
@@ -543,7 +479,24 @@
   </div>
   <div id="page-faq" class="page-section">
     <h2>FAQ</h2>
-    <p>Тут будет раздел с частыми вопросами и ответами.</p>
+    <div class="faq-item">
+      <details>
+        <summary>Я оплатил заявку, а она отменилась. Что делать?</summary>
+        <p>Сверьте указанные вами реквизиты и проверьте балансы...</p>
+      </details>
+    </div>
+    <div class="faq-item">
+      <details>
+        <summary>Когда будет выплата?</summary>
+        <p>Время перевода средств зависит от направления обмена...</p>
+      </details>
+    </div>
+    <div class="faq-item">
+      <details>
+        <summary>Какой режим работы сервиса?</summary>
+        <p>Мы работаем круглосуточно...</p>
+      </details>
+    </div>
   </div>
   <div id="page-news" class="page-section">
     <h2>Новости</h2>
@@ -554,9 +507,6 @@
     <p>Свяжитесь с нами для поддержки или вопросов.</p>
   </div>
   <!-- ====== End Tabs Sections ====== -->
-  <div class="ticker">
-    <marquee behavior="scroll" direction="left" id="cryptoTicker">Загрузка курсов...</marquee>
-  </div>
   <!-- Главный сервис обмена -->
   <div class="container" id="main-exchange">
     <h1 class="brand-title">
@@ -627,27 +577,6 @@
       </div>
     </div>
   </div>
-  <div class="faq-section">
-    <h2>FAQ</h2>
-    <div class="faq-item">
-      <details>
-        <summary>Я оплатил заявку, а она отменилась. Что делать?</summary>
-        <p>Сверьте указанные вами реквизиты и проверьте балансы...</p>
-      </details>
-    </div>
-    <div class="faq-item">
-      <details>
-        <summary>Когда будет выплата?</summary>
-        <p>Время перевода средств зависит от направления обмена...</p>
-      </details>
-    </div>
-    <div class="faq-item">
-      <details>
-        <summary>Какой режим работы сервиса?</summary>
-        <p>Мы работаем круглосуточно...</p>
-      </details>
-    </div>
-  </div>
   <script>
     // ====== Navbar Tabs Script ======
     const navMenuItems = document.querySelectorAll('.nav-menu li');
@@ -656,7 +585,6 @@
     navMenuItems.forEach(item => {
       item.addEventListener('click', function (e) {
         e.preventDefault();
-        // Active tab
         navMenuItems.forEach(i => i.classList.remove('active'));
         item.classList.add('active');
         const tab = item.getAttribute('data-tab');
@@ -673,7 +601,6 @@
         window.scrollTo({top: 0, behavior: 'smooth'});
       });
     });
-    // Стартовое состояние: сервис обмена видим, другие вкладки скрыты
     mainExchange.style.display = "block";
     // ====== Rest of your JS ======
     const coins = [
