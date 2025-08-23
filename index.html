@@ -48,6 +48,8 @@
       font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
       box-shadow: 0 2px 12px #0006;
       z-index: 100;
+      position: sticky;
+      top: 0;
     }
     .nav-logo {
       display: flex;
@@ -59,7 +61,7 @@
     }
     .nav-logo-main { color: #fff; }
     .nav-logo-accent {
-      background: #ff9800;
+      background: #ffb300;
       color: #191919;
       border-radius: 7px;
       margin-left: 6px;
@@ -91,7 +93,7 @@
     }
     .nav-menu li.active a,
     .nav-menu li a:hover {
-      color: #ff9800;
+      color: #ffb300;
     }
     .nav-menu li.active::after,
     .nav-menu li a:hover::after {
@@ -101,7 +103,7 @@
       width: 70%;
       height: 3px;
       border-radius: 2px;
-      background: #ff9800;
+      background: #ffb300;
       margin-top: 8px;
     }
     @media (max-width: 900px) {
@@ -127,16 +129,20 @@
       display: block;
     }
     .page-section h2 {
-      color: #ff9800;
+      color: #ffb300;
       font-size: 1.7em;
       margin-bottom: 18px;
       font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
       font-weight: 900;
-      text-shadow: 0 2px 10px #ff980066;
+      text-shadow: 0 2px 10px #ffb30066;
     }
     .page-section ul, .page-section ol {
       margin-left: 16px;
       margin-bottom: 17px;
+    }
+    /* Главная страница - убираем описание */
+    .page-section.home-content {
+      display: none !important;
     }
     /* Остальной стиль оставляем без изменений */
     .crypto-labels-bg {
@@ -501,10 +507,7 @@
     <span class="crypto-label ada">ADA</span>
   </div>
   <!-- ====== Tabs Sections ====== -->
-  <div id="page-home" class="page-section active">
-    <h2>Главная</h2>
-    <p>Добро пожаловать на SmartExchange! Безопасный и быстрый обмен криптовалют. Выберите направление обмена, рассчитайте сумму и получите лучшие условия.</p>
-  </div>
+  <div id="page-home" class="page-section home-content"></div>
   <div id="page-rules" class="page-section">
     <h2>Правила сервиса</h2>
     <ol>
@@ -554,7 +557,8 @@
   <div class="ticker">
     <marquee behavior="scroll" direction="left" id="cryptoTicker">Загрузка курсов...</marquee>
   </div>
-  <div class="container">
+  <!-- Главный сервис обмена -->
+  <div class="container" id="main-exchange">
     <h1 class="brand-title">
       <span class="brand-gradient">SmartExchange</span>
       <span class="brand-orbit"></span>
@@ -648,23 +652,29 @@
     // ====== Navbar Tabs Script ======
     const navMenuItems = document.querySelectorAll('.nav-menu li');
     const sections = document.querySelectorAll('.page-section');
+    const mainExchange = document.getElementById('main-exchange');
     navMenuItems.forEach(item => {
       item.addEventListener('click', function (e) {
         e.preventDefault();
         // Active tab
         navMenuItems.forEach(i => i.classList.remove('active'));
         item.classList.add('active');
-        // Show section
         const tab = item.getAttribute('data-tab');
         sections.forEach(sec => {
           sec.classList.remove('active');
           if (sec.id === 'page-' + tab) sec.classList.add('active');
         });
-        // Scroll to top after switching
+        // Показать/скрыть сервис обмена
+        if (tab === "home") {
+          mainExchange.style.display = "block";
+        } else {
+          mainExchange.style.display = "none";
+        }
         window.scrollTo({top: 0, behavior: 'smooth'});
       });
     });
-
+    // Стартовое состояние: сервис обмена видим, другие вкладки скрыты
+    mainExchange.style.display = "block";
     // ====== Rest of your JS ======
     const coins = [
       "USDT","BTC","ETH","XRP","SOL","BNB","ADA","AVAX","DOT","TRX",
