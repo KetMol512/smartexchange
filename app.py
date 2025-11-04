@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__, static_folder='.', template_folder='.')
 app.config['SECRET_KEY'] = 'смените-на-свой-секрет-12345'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/exchange.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(os.path.dirname(__file__), 'exchange.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -239,7 +239,6 @@ def api_submit():
     return jsonify({'order_id': order_id})
 
 # === ИНИЦИАЛИЗАЦИЯ ===
-os.makedirs('data', exist_ok=True)
 with app.app_context():
     db.create_all()
     if not Rate.query.first():
