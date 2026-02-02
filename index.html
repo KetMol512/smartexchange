@@ -726,18 +726,7 @@
         return;
       }
 
-      // Применяем спред 3–5% (пользователь получает меньше)
-      lastSpreadPercent = getRandomSpreadPercent();
-      const result = base * (1 - lastSpreadPercent / 100);
-
-      latestResult = result;
-
-      document.getElementById("output").innerHTML =
-        `<span style="color:#fbbf24;">
-          Вы получите: ${result.toFixed(6)} ${to}
-          <br><span style="font-size:14px;opacity:.85;">Спред: ${lastSpreadPercent.toFixed(2)}%</span>
-        </span>`;
-    }
+    
 
     // === ОТПРАВКА ЗАЯВКИ ===
     function showConfirm() {
